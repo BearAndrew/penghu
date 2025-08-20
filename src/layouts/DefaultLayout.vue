@@ -1,12 +1,15 @@
 <template>
-  <div class="default-layout">
-    <Navbar />
-    <div class="layout-container">
-      <Sidebar />
-      <main class="main-content">
-        <router-view />
-      </main>
-    </div>
+  <div class="relative min-h-screen">
+    <!-- Navbar -->
+    <Navbar @toggle-sidebar="toggleSidebar" class="absolute top-0 left-0 w-full z-50" />
+
+    <!-- Sidebar overlay -->
+    <Sidebar :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
+
+    <!-- 主內容 -->
+    <main class="h-screen">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -16,24 +19,16 @@ import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   name: 'DefaultLayout',
-  components: {
-    Navbar,
-    Sidebar
-  }
-}
+  components: { Navbar, Sidebar },
+  data() {
+    return {
+      isSidebarOpen: false,
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    },
+  },
+};
 </script>
-
-<style scoped>
-.default-layout {
-  min-height: 100vh;
-}
-
-.layout-container {
-  display: flex;
-}
-
-.main-content {
-  flex: 1;
-  padding: 2rem;
-}
-</style>

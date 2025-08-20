@@ -1,61 +1,137 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <router-link to="/" class="navbar-item">
-        澎湖
-      </router-link>
+  <nav class="flex gap-1 justify-between items-center">
+    <!-- 左側主選單按鈕 -->
+    <button class="relative w-64 h-[var(--nav-height)] px-10 flex items-center justify-center gap-4"
+      @click="$emit('toggle-sidebar')">
+      <!-- 背景 -->
+      <div class="absolute inset-0 bg-no-repeat scale-x-[-1]" :style="{
+        backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`,
+        backgroundSize: '100% 100%'
+      }"></div>
+      <!-- 內容 -->
+      <span class="relative z-10 text-[24px] text-white whitespace-nowrap">主選單</span>
+      <img src="@/assets/img/navbar/hamburger.png" alt="menu" class="h-6 z-10" />
+    </button>
+
+    <!-- 右側區塊 -->
+    <div class="flex flex-1 items-center justify-end space-x-2 pr-6 h-[var(--nav-height)] bg-no-repeat relative" :style="{
+      backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`,
+      backgroundSize: '100% 100%'
+    }">
+      <!-- 判斷路由 -->
+      <template v-if="isPermissionPage">
+        <!-- 權限管理內容 -->
+        <div class="flex items-center justify-between w-full h-full">
+          <!-- 子頁面 -->
+          <div class="flex h-full">
+            <div
+              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isCreatePage ? 'bg-gray-600' : '']"
+              @click="goToPage('create')">
+              新建
+            </div>
+            <div
+              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isSettingPage ? 'bg-gray-600' : '']"
+              @click="goToPage('setting')">
+              設定
+            </div>
+            <div
+              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isUpdatePage ? 'bg-gray-600' : '']"
+              @click="goToPage('update')">
+              修改
+            </div>
+          </div>
+
+
+          <!-- 右側導覽按鈕 -->
+          <div class="flex items-center gap-2">
+            <a @click="goDashboard" class="cursor-pointer">
+              <img src="@/assets/img/navbar/house.png" alt="house" class="h-10" />
+            </a>
+            <img src="@/assets/img/navbar/left-arrow.png" alt="left" class="h-10 cursor-pointer" />
+            <img src="@/assets/img/navbar/right-arrow.png" alt="right" class="h-10 cursor-pointer" />
+          </div>
+        </div>
+      </template>
+
+
+      <template v-else>
+        <a @click="goDashboard" class="cursor-pointer">
+          <img src="@/assets/img/navbar/house.png" alt="house" class="h-10" />
+        </a>
+
+        <!-- 使用者資訊與下拉選單 -->
+        <div class="relative">
+          <button class="flex gap-2 items-center" @click="toggleMenu">
+            <img src="@/assets/img/navbar/user.png" alt="user" class="h-10" />
+            <div class="flex flex-col items-center text-white leading-tight">
+              <span>管理處01</span>
+              <span>JAMES</span>
+            </div>
+          </button>
+
+          <!-- 下拉選單 -->
+          <div v-if="showMenu"
+            class="absolute right-0 mt-2 w-40 bg-gray-700 text-white rounded shadow-md overflow-hidden z-50">
+            <button @click="handleLogout" class="w-full px-4 py-2 hover:bg-gray-600 transition text-left">
+              登出
+            </button>
+          </div>
+        </div>
+      </template>
     </div>
 
-    <div class="navbar-menu">
-      <div class="navbar-end">
-        <router-link to="/dashboard" class="navbar-item">儀表板</router-link>
-        <router-link to="/settings" class="navbar-item">設定</router-link>
-
-        <!-- 🔐 登出按鈕 -->
-        <button class="navbar-item logout-button" @click="handleLogout">
-          登出
-        </button>
-      </div>
-    </div>
   </nav>
 </template>
+
 
 <script>
 export default {
   name: 'NavbarMenu',
+  data() {
+    return {
+      showMenu: false
+    };
+  },
   methods: {
+    toggleMenu() {
+      this.showMenu = !this.showMenu;
+    },
     handleLogout() {
-      // 清除登入狀態
+      this.showMenu = false;
       localStorage.removeItem('isLoggedIn')
-      // 導向登入頁
       this.$router.push('/login')
+    },
+    closeMenuOnOutsideClick(event) {
+      if (!this.$el.contains(event.target)) {
+        this.showMenu = false;
+      }
+    },
+    goDashboard() {
+      this.$router.push('/')
+    },
+    goToPage(page) {
+      this.$router.push(`/permission-management/${page}`);
     }
+  },
+  computed: {
+    isPermissionPage() {
+      return this.$route.path.includes('/permission-management');
+    },
+    isCreatePage() {
+      return this.$route.path === '/permission-management/create';
+    },
+    isSettingPage() {
+      return this.$route.path === '/permission-management/setting';
+    },
+    isUpdatePage() {
+      return this.$route.path === '/permission-management/update';
+    }
+  },
+  mounted() {
+    document.addEventListener('click', this.closeMenuOnOutsideClick);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.closeMenuOnOutsideClick);
   }
 }
 </script>
-
-<style scoped>
-.navbar {
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-item {
-  margin-left: 1rem;
-  text-decoration: none;
-  color: #333;
-}
-
-.logout-button {
-  background: none;
-  border: none;
-  color: #d33;
-  cursor: pointer;
-  font-weight: bold;
-  margin-left: 1rem;
-}
-</style>
