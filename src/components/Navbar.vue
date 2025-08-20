@@ -24,19 +24,13 @@
         <div class="flex items-center justify-between w-full h-full">
           <!-- 子頁面 -->
           <div class="flex h-full">
-            <div
-              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isCreatePage ? 'bg-gray-600' : '']"
-              @click="goToPage('create')">
+            <div :class="['tab-button', isCreatePage ? 'active-tab' : '']" @click="goToPage('create')">
               新建
             </div>
-            <div
-              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isSettingPage ? 'bg-gray-600' : '']"
-              @click="goToPage('setting')">
+            <div :class="['tab-button', isSettingPage ? 'active-tab' : '']" @click="goToPage('setting')">
               設定
             </div>
-            <div
-              :class="['flex items-center text-white text-[28px] px-6 h-full cursor-pointer', isUpdatePage ? 'bg-gray-600' : '']"
-              @click="goToPage('update')">
+            <div :class="['tab-button', isUpdatePage ? 'active-tab' : '']" @click="goToPage('update')">
               修改
             </div>
           </div>
@@ -135,3 +129,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tab-button {
+  @apply flex items-center text-white text-[36px] px-6 h-full cursor-pointer relative;
+}
+
+.active-tab {
+  @apply bg-gray-600;
+  clip-path: polygon(0% 100%, 10% 0%, 100% 0%, 90% 100%);
+}
+</style>
