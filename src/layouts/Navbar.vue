@@ -21,9 +21,9 @@
       <!-- 判斷路由 -->
       <template v-if="isPermissionPage">
         <!-- 權限管理內容 -->
-        <div class="flex items-center justify-between w-full h-full">
+        <div class="flex items-center justify-between w-full h-full overflow-hidden">
           <!-- 子頁面 -->
-          <div class="flex h-full">
+          <div class="flex h-full -ml-3.5">
             <div :class="['tab-button', isCreatePage ? 'active-tab' : '']" @click="goToPage('create')">
               新建
             </div>
@@ -132,11 +132,11 @@ export default {
 
 <style scoped>
 .tab-button {
-  @apply flex items-center text-white text-[36px] px-6 h-full cursor-pointer relative;
+  @apply flex items-center text-white text-[36px] px-8 h-full cursor-pointer relative;
 }
 
 .active-tab {
-  @apply bg-gray-600;
+  @apply bg-gradient-to-r from-[#47b69a] to-[#0287b9];
   clip-path: polygon(0% 100%, 10% 0%, 100% 0%, 90% 100%);
 }
 </style>
