@@ -6,34 +6,22 @@
       backgroundSize: '100% 100%'
     }">
     <ul class="py-4 select-none">
-      <li v-for="item in menuItems" :key="item.id">
+      <li v-for="(item, index) in menuItems" :key="index">
         <!-- 第一層選單 -->
-        <div class="flex items-center justify-between cursor-pointer hover:bg-[#0a1e38] px-6 py-2"
-          @click="toggleMenu(item.id)">
-          <div class="flex items-center space-x-2">
-            <img :src="require('@/assets/img/common/white-right-arrow.png')"
-              :class="openMenus.includes(item.id) ? 'rotate-90' : ''" alt="arrow" class="h-4 transition duration-300" />
-            <span class="text-white">{{ item.label }}</span>
-          </div>
-        </div>
-
-        <!-- 子選單 -->
-        <ul v-if="openMenus.includes(item.id)">
-          <li v-for="sub in item.children" :key="sub.path" @click="$router.push(sub.path)" :class="[
-            'pl-12 pr-2 py-2 cursor-pointer hover:bg-[#0a1e38]',
-            isActive(sub.path) ? '!bg-white !text-black' : 'text-white'
-          ]">
-            {{ sub.label }}
-          </li>
-        </ul>
+        <menu-item :item="item" :open-menus="openMenus" :toggle-menu="toggleMenu" :is-active="isActive" :level="1" :index="index" />
       </li>
     </ul>
   </aside>
 </template>
 
 <script>
+import MenuItem from './MenuItem.vue';
+
 export default {
   name: 'SidebarMenu',
+  components: {
+    MenuItem
+  },
   props: {
     isOpen: {
       type: Boolean,
@@ -45,7 +33,6 @@ export default {
       openMenus: [],
       menuItems: [
         {
-          id: 1,
           label: "權限管理",
           children: [
             { label: "新增", path: "/permission-management/create" },
@@ -53,15 +40,41 @@ export default {
             { label: "修改", path: "/permission-management/update" }
           ]
         },
+        {
+          label: "第一層",
+          children: [
+            { label: "第二層選項1", path: "/user-management/create" },
+            { label: "第二層選項2", path: "/user-management/create" },
+            {
+              label: "第二層子選單",
+              path: "/user-management/list",
+              children: [
+                { label: "第三層選項1", path: "/user-management/list/details" },
+                { label: "第三層選項2", path: "/user-management/list/details" },
+                { label: "第三層選項3", path: "/user-management/list/details" },
+                {
+                  label: "第三層子選單",
+                  path: "/user-management/list",
+                  children: [
+                    { label: "第四層選項1", path: "/user-management/list/details" },
+                    { label: "第四層選項2", path: "/user-management/list/details" },
+                    { label: "第四層選項3", path: "/user-management/list/details" },
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       ]
     };
   },
   methods: {
-    toggleMenu(id) {
-      if (this.openMenus.includes(id)) {
-        this.openMenus = this.openMenus.filter(openId => openId !== id);
+    toggleMenu(index) {
+      // 切換對應 index 的子選單
+      if (this.openMenus.includes(index)) {
+        this.openMenus = this.openMenus.filter(openIndex => openIndex !== index);
       } else {
-        this.openMenus.push(id);
+        this.openMenus.push(index);
       }
     },
     isActive(path) {
