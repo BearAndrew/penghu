@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import GradientDropdown from './components/GradientDropdown.vue';
-import GradientInput from './components/GradientInput.vue';
+import GradientDropdown from '../../shared/components/GradientDropdown.vue';
+import GradientInput from '../../shared/components/GradientInput.vue';
 
 export default {
   name: 'CreatePage',

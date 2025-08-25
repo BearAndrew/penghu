@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import GradientDropdown from './components/GradientDropdown.vue';
-import CheckBox from './components/CheckBox.vue';
+import GradientDropdown from '../../shared/components/GradientDropdown.vue';
+import CheckBox from '../../shared/components/CheckBox.vue';
 
 export default {
   name: 'SettingPage',
