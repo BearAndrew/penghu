@@ -4,13 +4,13 @@
     <div class="p-[1px] rounded-sm bg-gradient-to-r from-green-400 to-blue-400">
       <div
         class="w-full px-4 py-2 flex items-center justify-between cursor-pointer bg-no-repeat rounded-sm"
-        :style="{ backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`, backgroundSize: '100% 100%' }"
+        :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
         @click="toggleDropdown"
       >
         <span class="text-white">
           {{ modelValue || placeholder }}
         </span>
-        <img src="@/assets/img/common/white-down-arrow.png" class="h-3" alt="open" />
+        <img src="/assets/img/common/white-down-arrow.png" class="h-3" alt="open" />
       </div>
     </div>
 
@@ -18,7 +18,7 @@
     <div
       v-if="isDropdownOpen"
       class="absolute z-10 mt-1 w-full py-2 rounded shadow-lg bg-no-repeat overflow-hidden select-none"
-      :style="{ backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`, backgroundSize: '100% 100%' }"
+      :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
     >
       <div
         v-for="option in options"

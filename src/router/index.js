@@ -4,6 +4,7 @@ import Dashboard from '@/pages/Dashboard.vue'
 import PermissionCreate from '@/pages/permission-management/Create.vue'
 import PermissionSetting from '@/pages/permission-management/Setting.vue'
 import PermissionUpdate from '@/pages/permission-management/Update.vue'
+import Report from '@/pages/Report.vue'
 
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
@@ -40,6 +41,11 @@ const routes = [
         path: 'permission-management/update',
         name: 'PermissionUpdate',
         component: PermissionUpdate
+      },
+      {
+        path: 'report',
+        name: 'Report',
+        component: Report
       }
     ]
   },

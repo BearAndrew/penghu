@@ -2,13 +2,14 @@
   <aside
     class="fixed bottom-0 left-0 z-50 w-64 h-[calc(100vh-var(--nav-height))] bg-no-repeat transform transition-transform duration-300 ease-in-out overflow-y-auto"
     :class="isOpen ? 'translate-x-0' : '-translate-x-full'" :style="{
-      backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`,
+      backgroundImage: `url('/assets/img/common/gradient-light.png')`,
       backgroundSize: '100% 100%'
     }">
     <ul class="py-4 select-none">
       <li v-for="(item, index) in menuItems" :key="index">
         <!-- 第一層選單 -->
-        <menu-item :item="item" :open-menus="openMenus" :toggle-menu="toggleMenu" :is-active="isActive" :level="1" :index="index" />
+        <menu-item :item="item" :open-menus="openMenus" :toggle-menu="toggleMenu" :is-active="isActive" :level="1"
+          :index="index" />
       </li>
     </ul>
   </aside>
@@ -39,6 +40,10 @@ export default {
             { label: "設定", path: "/permission-management/setting" },
             { label: "修改", path: "/permission-management/update" }
           ]
+        },
+        {
+          label: "報表",
+          path: "/report",
         },
         {
           label: "第一層",

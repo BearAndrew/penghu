@@ -7,7 +7,7 @@
     >
       <img
         v-if="modelValue"
-        src="@/assets/img/common/check.png"
+        src="/assets/img/common/check.png"
         alt="checked"
         class="w-full h-full object-cover"
       />

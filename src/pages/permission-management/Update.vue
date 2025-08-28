@@ -2,21 +2,21 @@
   <div class="h-full relative flex items-center justify-center">
     <!-- 背景 -->
     <div class="absolute inset-0 bg-no-repeat scale-x-[-1] z-0"
-      :style="{ backgroundImage: `url(${require('@/assets/img/common/gradient-dark.png')})`, backgroundSize: '100% 100%' }">
+      :style="{ backgroundImage: `url('/assets/img/common/gradient-dark.png'})`, backgroundSize: '100% 100%' }">
     </div>
 
     <!-- 內容 -->
     <div class="flex items-center justify-center relative z-10 text-white pl-64 pt-[var(--nav-height)] w-full h-full">
       <div class="flex flex-col w-4/5 h-fit px-12 py-8 border border-white rounded-[40px] bg-no-repeat relative"
-        :style="{ backgroundImage: `url(${require('@/assets/img/common/gradient-dark.png')})`, backgroundSize: '100% 100%' }">
+        :style="{ backgroundImage: `url('/assets/img/common/gradient-dark.png')`, backgroundSize: '100% 100%' }">
 
         <button class="absolute top-6 right-8">
-          <img src="@/assets/img/common/close.png" alt="close" />
+          <img src="/assets/img/common/close.png" alt="close" />
         </button>
 
         <h1 class="text-[36px] font-bold mt-4">修改</h1>
 
-        <GradientDropdown class="w-1/4 self-end text-[20px]" v-model="id" :options="idOptions" placeholder="請選擇 ID" />
+        <GradientDropdown class="!w-1/4 self-end text-[20px]" v-model="id" :options="idOptions" placeholder="請選擇 ID" />
 
         <div class="flex-shrink-0 my-8 h-[1px] w-full bg-white"></div>
 

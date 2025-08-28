@@ -1,8 +1,8 @@
 <template>
   <div class="min-h-screen bg-cover bg-center flex items-center justify-center"
-    :style="{ backgroundImage: `url(${require('@/assets/img/login/bg.png')})` }">
+    :style="{ backgroundImage: `url('/assets/img/login/bg.png'))` }">
 
-    <img src="@/assets/img/login/logo.png" alt="Logo" class="absolute top-16 left-16 h-20" />
+    <img src="/assets/img/login/logo.png" alt="Logo" class="absolute top-16 left-16 h-20" />
 
     <h1 class="absolute top-[100px] left-1/2 -translate-x-1/2 text-white text-[60px] font-bold">智慧平台系統</h1>
 
@@ -19,7 +19,7 @@
               <span class="text-black">
                 {{ selectedDepartment || '請選擇單位' }}
               </span>
-              <img src="@/assets/img/common/down-arrow.png" class="h-5" alt="open" />
+              <img src="/assets/img/common/down-arrow.png" class="h-5" alt="open" />
             </div>
 
             <!-- Dropdown 選單 -->
@@ -29,8 +29,8 @@
                 class="flex items-center px-2 py-2 cursor-pointer hover:bg-gray-500 transition"
                 :class="selectedDepartment === dept.name ? '!bg-white' : ''">
                 <img :src="selectedDepartment === dept.name
-                  ? require('@/assets/img/common/black-right-arrow.png')
-                  : require('@/assets/img/common/white-right-arrow.png')" class="h-5 mr-2" alt="icon" />
+                  ? '/assets/img/common/black-right-arrow.png'
+                  : '/assets/img/common/white-right-arrow.png'" class="h-5 mr-2" alt="icon" />
                 <span :class="selectedDepartment === dept.name ? '!text-black' : 'text-white'">{{ dept.name }}</span>
               </div>
             </div>
@@ -48,7 +48,7 @@
             <!-- 右側眼睛 icon -->
             <button @click="toggleUsername" type="button">
               <img
-                :src="showUsername ? require('@/assets/img/login/eye.png') : require('@/assets/img/login/eye-off.png')"
+                :src="showUsername ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'"
                 alt="toggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
             </button>
           </div>
@@ -60,7 +60,7 @@
           <label class="block text-white font-medium mb-1 ml-4">密碼</label>
           <div class="relative">
             <!-- 左側鎖頭 icon -->
-            <img src="@/assets/img/login/lock.png" alt="lock"
+            <img src="/assets/img/login/lock.png" alt="lock"
               class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5" />
             <!-- 密碼輸入欄 -->
             <input :type="showPassword ? 'text' : 'password'" v-model="password"
@@ -68,7 +68,7 @@
             <!-- 右側眼睛 icon -->
             <button @click="togglePassword" type="button">
               <img
-                :src="showPassword ? require('@/assets/img/login/eye.png') : require('@/assets/img/login/eye-off.png')"
+                :src="showPassword ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'"
                 alt="toggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
             </button>
           </div>
@@ -99,7 +99,7 @@
 
 <script>
 export default {
-  name: "loginDropdown",
+  name: "AppLogin",
   data() {
     return {
       isDropdownOpen: false,

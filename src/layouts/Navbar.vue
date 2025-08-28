@@ -5,17 +5,17 @@
       @click="$emit('toggle-sidebar')">
       <!-- 背景 -->
       <div class="absolute inset-0 bg-no-repeat scale-x-[-1]" :style="{
-        backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`,
+        backgroundImage: `url('/assets/img/common/gradient-light.png')`,
         backgroundSize: '100% 100%'
       }"></div>
       <!-- 內容 -->
       <span class="relative z-10 text-[24px] text-white whitespace-nowrap">主選單</span>
-      <img src="@/assets/img/navbar/hamburger.png" alt="menu" class="h-6 z-10" />
+      <img src="/assets/img/navbar/hamburger.png" alt="menu" class="h-6 z-10" />
     </button>
 
     <!-- 右側區塊 -->
     <div class="flex flex-1 items-center justify-end space-x-2 pr-6 h-[var(--nav-height)] bg-no-repeat relative" :style="{
-      backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`,
+      backgroundImage: `url('/assets/img/common/gradient-light.png')`,
       backgroundSize: '100% 100%'
     }">
       <!-- 判斷路由 -->
@@ -39,10 +39,10 @@
           <!-- 右側導覽按鈕 -->
           <div class="flex items-center gap-2">
             <a @click="goDashboard" class="cursor-pointer">
-              <img src="@/assets/img/navbar/house.png" alt="house" class="h-10" />
+              <img src="/assets/img/navbar/house.png" alt="house" class="h-10" />
             </a>
-            <img src="@/assets/img/navbar/left-arrow.png" alt="left" class="h-10 cursor-pointer" />
-            <img src="@/assets/img/navbar/right-arrow.png" alt="right" class="h-10 cursor-pointer" />
+            <img src="/assets/img/navbar/left-arrow.png" alt="left" class="h-10 cursor-pointer" />
+            <img src="/assets/img/navbar/right-arrow.png" alt="right" class="h-10 cursor-pointer" />
           </div>
         </div>
       </template>
@@ -50,13 +50,13 @@
 
       <template v-else>
         <a @click="goDashboard" class="cursor-pointer">
-          <img src="@/assets/img/navbar/house.png" alt="house" class="h-10" />
+          <img src="/assets/img/navbar/house.png" alt="house" class="h-10" />
         </a>
 
         <!-- 使用者資訊與下拉選單 -->
         <div class="relative">
           <button class="flex gap-2 items-center" @click="toggleMenu">
-            <img src="@/assets/img/navbar/user.png" alt="user" class="h-10" />
+            <img src="/assets/img/navbar/user.png" alt="user" class="h-10" />
             <div class="flex flex-col items-center text-white leading-tight">
               <span>管理處01</span>
               <span>JAMES</span>

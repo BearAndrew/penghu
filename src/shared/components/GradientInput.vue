@@ -7,7 +7,7 @@
         :placeholder="placeholder"
         autocomplete="off"
         class="w-full px-4 py-2 bg-no-repeat rounded-sm text-white placeholder-white focus:outline-none"
-        :style="{ backgroundImage: `url(${require('@/assets/img/common/gradient-light.png')})`, backgroundSize: '100% 100%' }"
+        :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
       />
     </div>
   </div>
