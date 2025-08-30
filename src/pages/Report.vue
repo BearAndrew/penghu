@@ -6,99 +6,159 @@
     </div>
 
     <div
-      class="flex flex-col flex-1 items-center gap-2 mx-auto mt-[calc(var(--nav-height)+2rem)] mb-8 p-4 w-[calc(100vw-4rem)] max-h-[calc(100vh-9rem)] bg-[#344061] text-white z-10">
-      <div class="flex items-center justify-between gap-2 w-full">
-        <h2 class="text-3xl font-bold">各種AI警告列表統計</h2>
+      class="flex flex-col flex-1 items-center gap-2 mx-auto mt-[calc(var(--nav-height)+1rem)] mb-4 w-[calc(100vw-2rem)] max-h-[calc(100vh-7rem)] *:bg-[#344061] *:p-4 *:w-full text-white z-10">
 
-        <div class="flex items-center gap-2">
-          <label class="text-xl">每頁顯示</label>
-          <GradientDropdown class="!w-[100px] self-end text-[20px] z-20" v-model="pageCount" :options="pageCountOptions"
-            placeholder="請選擇頁數" trigger-class="pl-2 pr-4 py-1" optionClass="px-2 py-1" :iconPositionLeft=true
-            @change="changePageCount" />
+      <div class="flex flex-col flex-shrink-0 gap-6 overflow-hidden">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1 px-2 py-1.5 bg-[#868687] text-xl">
+            <span>日期(起)</span>
+            <input class="px-1 text-black outline-none">
+            <img class="h-4" src="/assets/img/report/calendar.png" alt="Calendar">
+          </div>
+
+          <div class="flex items-center gap-1 px-2 py-1.5 bg-[#868687] text-xl">
+            <span>日期(迄)</span>
+            <input class="px-1 text-black outline-none">
+            <img class="h-4" src="/assets/img/report/calendar.png" alt="Calendar">
+          </div>
+
+          <GradientDropdown class="!w-[200px] self-end text-[20px] z-20" v-model="dropDown1" :options="dropDownOptions1"
+            placeholder="" trigger-class="pl-2 pr-4 py-1" optionClass="px-2 py-1 text-xl" />
+
+          <GradientDropdown class="!w-[200px] self-end text-[20px] z-20" v-model="dropDown2" :options="dropDownOptions2"
+            placeholder="" trigger-class="pl-2 pr-4 py-1" optionClass="px-2 py-1 text-xl" />
+
         </div>
-      </div>
 
-      <!-- table with scrollable body -->
-      <div class="flex-1 w-full overflow-auto">
-        <table class="min-w-full table-auto text-white text-center border-collapse relative">
-          <colgroup>
-            <col style="width: 7%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 10%" />
-            <col style="width: 5%" />
-            <col style="width: 5%" />
-          </colgroup>
-          <thead class="bg-[#445075] sticky top-0 z-10">
-            <tr>
-              <th v-for="(header) in headerData" :key="header"
-                class="p-2 border border-gray-400 text-[#58595b] bg-[#bde4f9]">
-                <div class="flex items-center justify-center gap-1">
-                  {{ header.value }}
-                  <button @click="sortColumn(header.key)" class="relative">
-                    <img src="/assets/img/common/black-right-arrow.png" alt="Sort Asc" class="h-4"
-                      :class="sortKey === header.key && sortOrder === 1 ? '-rotate-90' : 'rotate-90'" />
-                  </button>
-                </div>
-              </th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <tr v-for="(row, index) in presentRowData" :key="row.id" class="hover:bg-[#556080]">
-              <td class="p-2 border border-gray-400">{{ row.date }}</td>
-              <td class="p-2 border border-gray-400">{{ row.location }}</td>
-              <td class="p-2 border border-gray-400">{{ row.event }}</td>
-              <td class="p-2 border border-gray-400">{{ row.anomaly }}</td>
-              <td class="p-2 border border-gray-400">{{ row.category }}</td>
-              <td class="p-2 border border-gray-400">{{ row.status }}</td>
-              <td class="p-2 border border-gray-400">{{ row.handler }}</td>
-              <td class="p-2 border border-gray-400">{{ row.completedTime }}</td>
-              <td class="p-2 border border-gray-400">{{ row.isConfirmed ? '是' : '否' }}</td>
-              <td class="p-2 border border-gray-400">
-                <button @click="editRow(index)">
-                  <img src="/assets/img/report/edit.png" alt="Edit" class="h-6" />
-                </button>
-              </td>
-              <td class="p-2 border border-gray-400">
-                <button @click="deleteRow(index)">
-                  <img src="/assets/img/report/delete.png" alt="Delete" class="h-6" />
-                </button>
-              </td>
-            </tr>
-            <tr v-if="presentRowData.length === 0">
-              <td :colspan="headerData.length" class="text-center py-4">沒有資料</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="flex items-center justify-end gap-4">
+          <button
+            class="flex items-center gap-3 px-4 py-0.5 text-xl bg-gradient-to-r from-[#47b69a] to-[#0287b9] text-white rounded-full">
+            <img src="/assets/img/report/search.png" alt="search" class="h-5" />
+            <span>查詢</span>
+          </button>
 
-      <!-- 分頁按鈕 -->
-      <div class="flex justify-center items-center mt-4">
-        <!-- 上一頁按鈕 -->
-        <button @click="prevPage" :disabled="page === 1" class="cursor-pointer">
-          <img src="/assets/img/common/left-arrow.png" alt="Previous" class="w-6 pointer-events-none" />
-        </button>
+          <button
+            class="flex items-center gap-3 px-4 py-0.5 text-xl bg-gradient-to-r from-[#47b69a] to-[#0287b9] text-white rounded-full">
+            <!-- <img src="/assets/img/report/plus.png" alt="plus" class="h-5" /> -->
+             <span class="text-2xl leading-none">+</span>
+            <span>新增</span>
+          </button>
 
-        <!-- 頁碼按鈕 -->
-        <div class="flex items-center mx-4 gap-2">
-          <!-- 判斷顯示頁碼的區域 -->
-          <button v-for="pageNumber in pageNumbers" :key="pageNumber" @click="goToPage(pageNumber)"
-            :class="{ '!bg-[#8d8d8e] text-white': pageNumber === page, 'pointer-events-none': pageNumber === '...' }"
-            class="w-6 h-6 rounded-full hover:bg-[#667090] hover:text-white">
-            {{ pageNumber }}
+          <button
+            class="flex items-center gap-3 px-4 py-0.5 text-xl bg-gradient-to-r from-[#47b69a] to-[#0287b9] text-white rounded-full">
+            <img src="/assets/img/report/excel.png" alt="excel" class="h-5" />
+            <span>產出Excel</span>
+          </button>
+
+          <button
+            class="flex items-center gap-3 px-4 py-0.5 text-xl bg-gradient-to-r from-[#47b69a] to-[#0287b9] text-white rounded-full">
+            <img src="/assets/img/report/pdf.png" alt="pdf" class="h-5" />
+            <span>產出PDF</span>
+          </button>
+
+          <button
+            class="flex items-center gap-3 px-4 py-0.5 text-xl bg-gradient-to-r from-[#47b69a] to-[#0287b9] text-white rounded-full">
+            <img src="/assets/img/report/printer.png" alt="printer" class="h-5" />
+            <span>列印</span>
           </button>
         </div>
+      </div>
 
-        <!-- 下一頁按鈕 -->
-        <button @click="nextPage" :disabled="page === totalPages" class="cursor-pointer">
-          <img src="/assets/img/common/right-arrow.png" alt="Next" class="w-6 pointer-events-none" />
-        </button>
+      <div class="flex flex-col flex-1 items-center gap-2 overflow-hidden">
+        <div class="flex items-center justify-between gap-2 w-full">
+          <h2 class="text-3xl font-bold">各種AI警告列表統計</h2>
+
+          <div class="flex items-center gap-2">
+            <label class="text-xl">每頁顯示</label>
+            <GradientDropdown class="!w-[100px] self-end text-[20px] z-20" v-model="pageCount"
+              :options="pageCountOptions" placeholder="請選擇頁數" trigger-class="pl-2 pr-4 py-1"
+              optionClass="px-2 py-1 text-xl" :iconPositionLeft=true @change="changePageCount" />
+          </div>
+        </div>
+
+        <!-- table with scrollable body -->
+        <div class="flex-1 w-full overflow-auto">
+          <table class="min-w-full table-auto text-white text-center border-collapse relative">
+            <colgroup>
+              <col style="width: 7%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 5%" />
+              <col style="width: 5%" />
+            </colgroup>
+            <thead class="bg-[#445075] sticky top-0 z-10">
+              <tr>
+                <th v-for="(header) in headerData" :key="header"
+                  class="p-2 border border-gray-400 text-[#58595b] bg-[#bde4f9]">
+                  <div class="flex items-center justify-center gap-1">
+                    {{ header.value }}
+                    <button @click="sortColumn(header.key)" class="relative">
+                      <img src="/assets/img/common/black-right-arrow.png" alt="Sort Asc" class="h-4"
+                        :class="sortKey === header.key && sortOrder === 1 ? '-rotate-90' : 'rotate-90'" />
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr v-for="(row, index) in presentRowData" :key="row.id" class="hover:bg-[#556080]">
+                <td class="p-2 border border-gray-400">{{ row.date }}</td>
+                <td class="p-2 border border-gray-400">{{ row.location }}</td>
+                <td class="p-2 border border-gray-400">{{ row.event }}</td>
+                <td class="p-2 border border-gray-400">{{ row.anomaly }}</td>
+                <td class="p-2 border border-gray-400">{{ row.category }}</td>
+                <td class="p-2 border border-gray-400">{{ row.status }}</td>
+                <td class="p-2 border border-gray-400">{{ row.handler }}</td>
+                <td class="p-2 border border-gray-400">{{ row.completedTime }}</td>
+                <td class="p-2 border border-gray-400">{{ row.isConfirmed ? '是' : '否' }}</td>
+                <td class="p-2 border border-gray-400">
+                  <button @click="editRow(index)">
+                    <img src="/assets/img/report/edit.png" alt="Edit" class="h-6" />
+                  </button>
+                </td>
+                <td class="p-2 border border-gray-400">
+                  <button @click="deleteRow(index)">
+                    <img src="/assets/img/report/delete.png" alt="Delete" class="h-6" />
+                  </button>
+                </td>
+              </tr>
+              <tr v-if="presentRowData.length === 0">
+                <td :colspan="headerData.length" class="text-center py-4">沒有資料</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 分頁按鈕 -->
+        <div class="flex justify-center items-center mt-4">
+          <!-- 上一頁按鈕 -->
+          <button @click="prevPage" :disabled="page === 1" class="cursor-pointer">
+            <img src="/assets/img/common/left-arrow.png" alt="Previous" class="w-6 pointer-events-none" />
+          </button>
+
+          <!-- 頁碼按鈕 -->
+          <div class="flex items-center mx-4 gap-2">
+            <!-- 判斷顯示頁碼的區域 -->
+            <button v-for="pageNumber in pageNumbers" :key="pageNumber" @click="goToPage(pageNumber)"
+              :class="{ '!bg-[#8d8d8e] text-white': pageNumber === page, 'pointer-events-none': pageNumber === '...' }"
+              class="w-6 h-6 rounded-full hover:bg-[#667090] hover:text-white">
+              {{ pageNumber }}
+            </button>
+          </div>
+
+          <!-- 下一頁按鈕 -->
+          <button @click="nextPage" :disabled="page === totalPages" class="cursor-pointer">
+            <img src="/assets/img/common/right-arrow.png" alt="Next" class="w-6 pointer-events-none" />
+          </button>
+        </div>
       </div>
 
     </div>
@@ -131,9 +191,21 @@ export default {
       ],
       pageCount: 15, // 預設顯示15筆
       pageCountOptions: [
-        { id: 1, name: '5筆', value: 5 },
-        { id: 2, name: '10筆', value: 10 },
-        { id: 3, name: '15筆', value: 15 },
+        { name: '5筆', value: 5 },
+        { name: '10筆', value: 10 },
+        { name: '15筆', value: 15 },
+      ],
+      dropDown1: 1,
+      dropDownOptions1: [
+        { name: '功能報表', value: 1 },
+        { name: '第二報表', value: 2 },
+        { name: '第三報表', value: 3 }
+      ],
+      dropDown2: 1,
+      dropDownOptions2: [
+        { name: '功能報表', value: 1 },
+        { name: '第二報表', value: 2 },
+        { name: '第三報表', value: 3 }
       ],
       page: 1,
       rawData: [

@@ -7,6 +7,7 @@
         :class="{[triggerClass]: true, 'flex-row-reverse': iconPositionLeft,}"
         :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
         @click="toggleDropdown"
+        ref="triggerElement"
       >
         <span class="text-white">
           <!-- 顯示modelValue的name -->
@@ -16,24 +17,27 @@
       </div>
     </div>
 
-    <!-- Dropdown Options -->
-    <div
-      v-if="isDropdownOpen"
-      class="absolute z-10 mt-1 w-full py-2 rounded shadow-lg bg-no-repeat overflow-hidden select-none"
-      :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
-    >
+    <!-- 使用 teleport 把選項渲染到 <body> 下面 -->
+    <teleport to="body">
       <div
-        v-for="option in options"
-        :key="option.id"
-        @click="selectOption(option)"
-        class="flex items-center cursor-pointer hover:bg-[#0a1e38] transition"
-        :class="{ '!bg-white': modelValue === option.value, [optionClass]: true }"
+        v-if="isDropdownOpen"
+        class="absolute z-10 mt-1 py-2 rounded shadow-lg bg-no-repeat overflow-hidden select-none"
+        style="background-image: url('/assets/img/common/gradient-light.png'); background-size: 100% 100%;"
+        :style="dropdownStyle"
       >
-        <span :class="modelValue === option.value ? '!text-black' : 'text-white'">
-          {{ option.name }}
-        </span>
+        <div
+          v-for="option in options"
+          :key="option.id"
+          @click="selectOption(option)"
+          class="flex items-center cursor-pointer hover:bg-[#0a1e38] transition"
+          :class="{ '!bg-white': modelValue === option.value, [optionClass]: true }"
+        >
+          <span :class="modelValue === option.value ? '!text-black' : 'text-white'">
+            {{ option.name }}
+          </span>
+        </div>
       </div>
-    </div>
+    </teleport>
   </div>
 </template>
 
@@ -71,12 +75,16 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
+      dropdownStyle: {
+        top: '0px',
+        left: '0px',
+        width: 'auto',
+      },
     };
   },
   computed: {
     // 計算顯示的選項名稱
     selectedOptionName() {
-      // 根據 modelValue 來找對應的 name
       const selectedOption = this.options.find(option => option.value === this.modelValue);
       return selectedOption ? selectedOption.name : null;
     }
@@ -84,6 +92,10 @@ export default {
   methods: {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
+
+      if (this.isDropdownOpen) {
+        this.updateDropdownPosition();
+      }
     },
     selectOption(option) {
       this.$emit('update:modelValue', option.value); // 傳遞 value
@@ -94,6 +106,18 @@ export default {
       if (this.$refs.dropdownWrapper && !this.$refs.dropdownWrapper.contains(event.target)) {
         this.isDropdownOpen = false;
       }
+    },
+    updateDropdownPosition() {
+      const triggerElement = this.$refs.triggerElement;
+      if (!triggerElement) return;
+
+      const rect = triggerElement.getBoundingClientRect();
+
+      this.dropdownStyle = {
+        top: `${rect.bottom + window.scrollY}px`, // 計算觸發元素底部位置
+        left: `${rect.left + window.scrollX}px`, // 計算觸發元素左側位置
+        width: `${rect.width}px`, // 保持與觸發元素寬度相同
+      };
     },
   },
   mounted() {
