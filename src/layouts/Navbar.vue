@@ -41,8 +41,8 @@
             <a @click="goDashboard" class="cursor-pointer">
               <img src="/assets/img/navbar/house.png" alt="house" class="h-10" />
             </a>
-            <img src="/assets/img/navbar/left-arrow.png" alt="left" class="h-10 cursor-pointer" />
-            <img src="/assets/img/navbar/right-arrow.png" alt="right" class="h-10 cursor-pointer" />
+            <img src="/assets/img/common/left-arrow.png" alt="left" class="h-10 cursor-pointer" />
+            <img src="/assets/img/common/right-arrow.png" alt="right" class="h-10 cursor-pointer" />
           </div>
         </div>
       </template>

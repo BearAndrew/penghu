@@ -3,12 +3,14 @@
     <!-- Dropdown Trigger -->
     <div class="p-[1px] rounded-sm bg-gradient-to-r from-green-400 to-blue-400">
       <div
-        class="w-full px-4 py-2 flex items-center justify-between cursor-pointer bg-no-repeat rounded-sm"
+        class="w-full flex items-center justify-between cursor-pointer bg-no-repeat rounded-sm"
+        :class="{[triggerClass]: true, 'flex-row-reverse': iconPositionLeft,}"
         :style="{ backgroundImage: `url('/assets/img/common/gradient-light.png')`, backgroundSize: '100% 100%' }"
         @click="toggleDropdown"
       >
         <span class="text-white">
-          {{ modelValue || placeholder }}
+          <!-- 顯示modelValue的name -->
+          {{ selectedOptionName || placeholder }}
         </span>
         <img src="/assets/img/common/white-down-arrow.png" class="h-3" alt="open" />
       </div>
@@ -24,17 +26,16 @@
         v-for="option in options"
         :key="option.id"
         @click="selectOption(option)"
-        class="flex items-center px-4 py-2 cursor-pointer hover:bg-[#0a1e38] transition"
-        :class="modelValue === option.name ? '!bg-white' : ''"
+        class="flex items-center cursor-pointer hover:bg-[#0a1e38] transition"
+        :class="{ '!bg-white': modelValue === option.value, [optionClass]: true }"
       >
-        <span :class="modelValue === option.name ? '!text-black' : 'text-white'">
+        <span :class="modelValue === option.value ? '!text-black' : 'text-white'">
           {{ option.name }}
         </span>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -45,11 +46,26 @@ export default {
       type: Array,
       required: true,
     },
-    modelValue: String,
+    modelValue: {
+      type: [String, Number],
+      required: false,
+    },
     placeholder: {
       type: String,
       default: '請選擇',
     },
+    triggerClass: {
+      type: String,
+      default: 'px-4 py-2',
+    },
+    optionClass: {
+      type: String,
+      default: 'px-4 py-2',
+    },
+    iconPositionLeft: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: ['update:modelValue'],
   data() {
@@ -57,12 +73,20 @@ export default {
       isDropdownOpen: false,
     };
   },
+  computed: {
+    // 計算顯示的選項名稱
+    selectedOptionName() {
+      // 根據 modelValue 來找對應的 name
+      const selectedOption = this.options.find(option => option.value === this.modelValue);
+      return selectedOption ? selectedOption.name : null;
+    }
+  },
   methods: {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
     selectOption(option) {
-      this.$emit('update:modelValue', option.name);
+      this.$emit('update:modelValue', option.value); // 傳遞 value
       this.isDropdownOpen = false;
     },
     handleClickOutside(event) {
@@ -80,4 +104,3 @@ export default {
   },
 };
 </script>
-

@@ -85,13 +85,13 @@ export default {
         department: '',
       },
       statusOptions: [
-        { id: 1, name: '啟用' },
-        { id: 2, name: '停用' },
+        { value: 1, name: '啟用' },
+        { value: 2, name: '停用' },
       ],
       departments: [
-        { id: 1, name: '管理部' },
-        { id: 2, name: '行政部' },
-        { id: 3, name: '財務部' },
+        { value: 1, name: '管理部' },
+        { value: 2, name: '行政部' },
+        { value: 3, name: '財務部' },
       ],
     };
   },

@@ -78,9 +78,9 @@ export default {
     return {
       id: '',
       idOptions: [
-        { id: 1, name: 'ID 1' },
-        { id: 2, name: 'ID 2' },
-        { id: 3, name: 'ID 3' },
+        { value: 1, name: 'ID 1' },
+        { value: 2, name: 'ID 2' },
+        { value: 3, name: 'ID 3' },
       ],
       formData: [
         {
