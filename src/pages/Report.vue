@@ -21,31 +21,51 @@
       <!-- table with scrollable body -->
       <div class="flex-1 w-full overflow-auto">
         <table class="min-w-full table-auto text-white text-center border-collapse relative">
+          <colgroup>
+            <col style="width: 7%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 10%" />
+            <col style="width: 5%" />
+            <col style="width: 5%" />
+          </colgroup>
           <thead class="bg-[#445075] sticky top-0 z-10">
             <tr>
-              <th v-for="header in headerData" :key="header"
-                class="px-4 py-2 border border-gray-400 text-[#58595b] bg-[#bde4f9]">
-                {{ header }}
+              <th v-for="(header) in headerData" :key="header"
+                class="p-2 border border-gray-400 text-[#58595b] bg-[#bde4f9]">
+                <div class="flex items-center justify-center gap-1">
+                  {{ header.value }}
+                  <button @click="sortColumn(header.key)" class="relative">
+                    <img src="/assets/img/common/black-right-arrow.png" alt="Sort Asc" class="h-4"
+                      :class="sortKey === header.key && sortOrder === 1 ? '-rotate-90' : 'rotate-90'" />
+                  </button>
+                </div>
               </th>
             </tr>
           </thead>
+
           <tbody>
             <tr v-for="(row, index) in presentRowData" :key="row.id" class="hover:bg-[#556080]">
-              <td class="px-4 py-2 border border-gray-400">{{ row.date }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.location }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.event }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.anomaly }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.category }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.status }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.handler }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.completedTime }}</td>
-              <td class="px-4 py-2 border border-gray-400">{{ row.isConfirmed ? '是' : '否' }}</td>
-              <td class="px-4 py-2 border border-gray-400">
+              <td class="p-2 border border-gray-400">{{ row.date }}</td>
+              <td class="p-2 border border-gray-400">{{ row.location }}</td>
+              <td class="p-2 border border-gray-400">{{ row.event }}</td>
+              <td class="p-2 border border-gray-400">{{ row.anomaly }}</td>
+              <td class="p-2 border border-gray-400">{{ row.category }}</td>
+              <td class="p-2 border border-gray-400">{{ row.status }}</td>
+              <td class="p-2 border border-gray-400">{{ row.handler }}</td>
+              <td class="p-2 border border-gray-400">{{ row.completedTime }}</td>
+              <td class="p-2 border border-gray-400">{{ row.isConfirmed ? '是' : '否' }}</td>
+              <td class="p-2 border border-gray-400">
                 <button @click="editRow(index)">
                   <img src="/assets/img/report/edit.png" alt="Edit" class="h-6" />
                 </button>
               </td>
-              <td class="px-4 py-2 border border-gray-400">
+              <td class="p-2 border border-gray-400">
                 <button @click="deleteRow(index)">
                   <img src="/assets/img/report/delete.png" alt="Delete" class="h-6" />
                 </button>
@@ -96,7 +116,19 @@ export default {
   data() {
     return {
       // 表頭標題資料
-      headerData: ['日期', '地點', '發生事件', '異常事件', '類別', '處理狀況', '處理人員', '處理完成時間', '是否完成確認', '修改', '刪除'],
+      headerData: [
+        { key: 'date', value: '日期' },
+        { key: 'location', value: '地點' },
+        { key: 'event', value: '發生事件' },
+        { key: 'anomaly', value: '異常事件' },
+        { key: 'category', value: '類別' },
+        { key: 'status', value: '處理狀況' },
+        { key: 'handler', value: '處理人員' },
+        { key: 'completedTime', value: '處理完成時間' },
+        { key: 'isConfirmed', value: '是否完成確認' },
+        { key: 'edit', value: '修改' },
+        { key: 'delete', value: '刪除' }
+      ],
       pageCount: 15, // 預設顯示15筆
       pageCountOptions: [
         { id: 1, name: '5筆', value: 5 },
@@ -137,6 +169,8 @@ export default {
         { id: 30, date: '2024/10/9', location: '伺服器室', event: '數據庫崩潰', anomaly: '系統錯誤', category: '資料庫問題', status: '已處理', handler: '李建明', completedTime: '2024/10/9 14:00:00', isConfirmed: true }
       ],
       presentRowData: [], // 用來存儲當前頁面顯示的資料
+      sortKey: null,
+      sortOrder: 1,   // 1為升冪，-1為降冪
     };
   },
   computed: {
@@ -187,9 +221,18 @@ export default {
       }
     },
     updatePresentRowData() {
+      let sortedData = [...this.rawData];
+      if (this.sortKey !== null) {
+        const key = this.headerData.find(header => header.key === this.sortKey).key;
+        sortedData.sort((a, b) => {
+          if (a[key] <= b[key]) return -this.sortOrder;
+          if (a[key] > b[key]) return this.sortOrder;
+          return 0;
+        });
+      }
       const start = (this.page - 1) * this.pageCount;
       const end = start + this.pageCount;
-      this.presentRowData = this.rawData.slice(start, end); // 更新當前顯示的資料
+      this.presentRowData = sortedData.slice(start, end);  // 更新當前顯示的資料
     },
     changePageCount(value) {
       this.pageCount = value;
@@ -206,6 +249,18 @@ export default {
         this.rawData = this.rawData.filter((_, i) => i !== index);
         this.updatePresentRowData(); // 更新顯示的資料
       }
+    },
+    // 排序方法
+    sortColumn(index) {
+      if (this.sortKey === index) {
+        // 如果點擊的是同一列，切換排序方向
+        this.sortOrder = -this.sortOrder;
+      } else {
+        // 如果點擊的是不同列，重置為升序
+        this.sortKey = index;
+        this.sortOrder = 1;
+      }
+      this.updatePresentRowData();  // 更新表格資料
     }
   },
   created() {
