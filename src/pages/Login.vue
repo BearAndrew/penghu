@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-cover bg-center flex items-center justify-center"
-    :style="{ backgroundImage: `url('/assets/img/login/bg.png'))` }">
+    :style="{ backgroundImage: `url('/assets/img/login/bg.png')` }">
 
     <img src="/assets/img/login/logo.png" alt="Logo" class="absolute top-16 left-16 h-20" />
 
