@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-cover bg-center flex items-center justify-center"
-    :style="{ backgroundImage: `url('/assets/img/login/bg.png')` }">
+    style="background-image: url('/assets/img/login/bg.png')">
 
     <img src="/assets/img/login/logo.png" alt="Logo" class="absolute top-16 left-16 h-20" />
 
@@ -47,9 +47,8 @@
               :style="!showUsername ? { WebkitTextSecurity: 'disc' } : {}" />
             <!-- 右側眼睛 icon -->
             <button @click="toggleUsername" type="button">
-              <img
-                :src="showUsername ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'"
-                alt="toggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
+              <img :src="showUsername ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'" alt="toggle"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
             </button>
           </div>
         </div>
@@ -67,9 +66,8 @@
               class="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
             <!-- 右側眼睛 icon -->
             <button @click="togglePassword" type="button">
-              <img
-                :src="showPassword ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'"
-                alt="toggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
+              <img :src="showPassword ? '/assets/img/login/eye.png' : '/assets/img/login/eye-off.png'" alt="toggle"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 cursor-pointer" />
             </button>
           </div>
 
