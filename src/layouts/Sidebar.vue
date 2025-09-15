@@ -46,6 +46,10 @@ export default {
           path: "/report",
         },
         {
+          label: "地圖",
+          path: "/map",
+        },
+        {
           label: "第一層",
           children: [
             { label: "第二層選項1", path: "/user-management/create" },
