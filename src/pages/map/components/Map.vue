@@ -3,12 +3,13 @@
     class="relative w-full h-0 overflow-hidden rounded-lg select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
     @mousedown="startDrag" @wheel.prevent="onWheelZoom">
     <!-- 可拖曳 + 縮放的容器 -->
-    <div ref="drag-content" class="absolute top-0 left-0" :style="contentStyle">
+    <div ref="drag-content" class="absolute top-0 left-0 h-full" :style="contentStyle">
       <!-- 疊加所有圖片 -->
       <img v-for="(src, index) in imageSources" :key="index" :src="src" :class="[
         index === 0 ? '' : 'absolute top-0 left-0',
-        'w-full pointer-events-none select-none'
-      ]" draggable="false" />
+        'h-full object-contain pointer-events-none select-none',
+        imagesReady ? '' : 'invisible'
+      ]" draggable="false" @load="onImageLoad(index)" />
     </div>
 
     <!-- 控制按鈕 -->
@@ -38,8 +39,21 @@ export default {
         '/assets/img/map/頂樓/分區地圖-頂樓-icon.png',
         '/assets/img/map/頂樓/分區地圖-頂樓-point.png',
       ],
+      // imageSources: [
+      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-bg.png',
+      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-frame.png',
+      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-icon.png',
+      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-point.png',
+      // ],
+      // imageSources: [
+      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-bg.png',
+      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-frame.png',
+      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-icon.png',
+      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-point.png',
+      // ],
+      imagesReady: false,
       scale: 1,
-      minScale: 1,
+      minScale: 0.5,
       maxScale: 3,
       scaleStep: 0.1,
       translate: { x: 0, y: 0 },
@@ -57,10 +71,12 @@ export default {
       }
     }
   },
-  mounted() {
-    this.centerContent()
-  },
   methods: {
+    onImageLoad(index) {
+      if (index === 0) {
+        this.centerContent();
+      }
+    },
     zoomIn() {
       this.scale = Math.min(this.scale + this.scaleStep, this.maxScale)
     },
@@ -89,28 +105,8 @@ export default {
       const dragContent = this.$refs['drag-content'];
       if (!container || !dragContent) return;
 
-      const containerRect = container.getBoundingClientRect();
-      const contentRect = dragContent.getBoundingClientRect();
-
-      // content 原始大小（未放大前）
-      const contentWidth = contentRect.width / this.scale;
-      const contentHeight = contentRect.height / this.scale;
-
-      // 拖曳限制範圍(實際放大後 - container 尺寸) / 4，最小為0
-      const maxOffsetX = Math.max(0, (contentWidth * this.scale - containerRect.width / 2)) / 2;
-      const maxOffsetY = Math.max(0, (contentHeight * this.scale - containerRect.height)) / 4;
-
       let newX = this.translate.x + dx;
       let newY = this.translate.y + dy;
-
-      // 以 initialTranslate 中心，加減 maxOffset 限制拖曳範圍
-      const minX = this.initialTranslate.x - maxOffsetX;
-      const maxX = this.initialTranslate.x + maxOffsetX;
-      const minY = this.initialTranslate.y - maxOffsetY;
-      const maxY = this.initialTranslate.y + maxOffsetY;
-
-      newX = Math.min(maxX, Math.max(minX, newX));
-      newY = Math.min(maxY, Math.max(minY, newY));
 
       this.translate.x = newX;
       this.translate.y = newY;
@@ -144,16 +140,21 @@ export default {
         const contentRect = dragContent.getBoundingClientRect();
 
         // content 原始大小（未縮放）
-        const contentHeight = contentRect.height;
+        const containerWidth = containerRect.width;
+        const contentWidth = contentRect.width;
 
         // 以 scale=1 置中時，translate y
         this.initialTranslate = {
-          x: 0,
-          y: (contentHeight - containerRect.height) / 4
+          x: containerWidth / 2 - contentWidth / 2,
+          y: 0
         };
 
         // 同時把 translate 初始設為 initialTranslate
         this.translate = { ...this.initialTranslate };
+
+        setTimeout(() => {
+          this.imagesReady = true;
+        }, 100);
       });
     }
   }
