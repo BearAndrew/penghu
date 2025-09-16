@@ -1,0 +1,62 @@
+{
+  "title": "宿舍",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "宿舍一樓",
+      "imageSources": [
+        "/assets/img/map/宿舍/分區地圖-宿舍一樓-bg.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍一樓-frame.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍一樓-icon.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍一樓-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "3-23"
+        },
+        {
+          "type": "2",
+          "text": "1-2"
+        },
+        {
+          "type": "a",
+          "text": "數量4"
+        },
+        {
+          "type": "b",
+          "text": "數量4"
+        },
+        {
+          "type": "e",
+          "text": "數量4"
+        }
+      ]
+    },
+    {
+      "subtitle": "宿舍二樓",
+      "imageSources": [
+        "/assets/img/map/宿舍/分區地圖-宿舍二樓-bg.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍二樓-frame.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍二樓-icon.png",
+        "/assets/img/map/宿舍/分區地圖-宿舍二樓-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "24-28"
+        }
+      ]
+    }
+  ]
+}

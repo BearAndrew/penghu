@@ -1,0 +1,90 @@
+{
+  "title": "二樓",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "二樓(南側)",
+      "imageSources": [
+        "/assets/img/map/二樓/分區地圖-二樓(南側)-bg.png",
+        "/assets/img/map/二樓/分區地圖-二樓(南側)-frame.png",
+        "/assets/img/map/二樓/分區地圖-二樓(南側)-icon.png",
+        "/assets/img/map/二樓/分區地圖-二樓(南側)-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "9-78,111"
+        },
+        {
+          "type": "2",
+          "text": "3-6"
+        },
+        {
+          "type": "4",
+          "text": "2"
+        },
+        {
+          "type": "a",
+          "text": "數量11"
+        },
+        {
+          "type": "b",
+          "text": "13枝"
+        },
+        {
+          "type": "e",
+          "text": "2枝"
+        },
+        {
+          "type": "d",
+          "text": "2枝"
+        }
+      ]
+    },
+    {
+      "subtitle": "二樓(國際線北側)",
+      "imageSources": [
+        "/assets/img/map/二樓/分區地圖-二樓(國際線北側)-bg.png",
+        "/assets/img/map/二樓/分區地圖-二樓(國際線北側)-frame.png",
+        "/assets/img/map/二樓/分區地圖-二樓(國際線北側)-icon.png",
+        "/assets/img/map/二樓/分區地圖-二樓(國際線北側)-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "79-110"
+        },
+        {
+          "type": "2",
+          "text": "7-8"
+        },
+        {
+          "type": "4",
+          "text": "2"
+        },
+        {
+          "type": "a",
+          "text": "數量11"
+        },
+        {
+          "type": "b",
+          "text": "數量13"
+        },
+        {
+          "type": "d",
+          "text": "數量2"
+        }
+      ]
+    }
+  ]
+}

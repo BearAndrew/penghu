@@ -1,0 +1,114 @@
+{
+  "title": "貨運站",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "貨運站一樓",
+      "imageSources": [
+        "/assets/img/map/貨運站/貨運站一樓/分區地圖-貨運站一樓-bg.png",
+        "/assets/img/map/貨運站/貨運站一樓/分區地圖-貨運站一樓-frame.png",
+        "/assets/img/map/貨運站/貨運站一樓/分區地圖-貨運站一樓-icon.png",
+        "/assets/img/map/貨運站/貨運站一樓/分區地圖-貨運站一樓-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "3-23"
+        },
+        {
+          "type": "2",
+          "text": "1"
+        },
+        {
+          "type": "a",
+          "text": "數量3"
+        },
+        {
+          "type": "b",
+          "text": "數量3"
+        },
+        {
+          "type": "e",
+          "text": "數量3"
+        }
+      ]
+    },
+    {
+      "subtitle": "貨運站頂樓",
+      "imageSources": [
+        "/assets/img/map/貨運站/貨運站頂樓/分區地圖-貨運站頂樓-bg.png",
+        "/assets/img/map/貨運站/貨運站頂樓/分區地圖-貨運站頂樓-frame.png",
+        "/assets/img/map/貨運站/貨運站頂樓/分區地圖-貨運站頂樓-icon.png",
+        "/assets/img/map/貨運站/貨運站頂樓/分區地圖-貨運站頂樓-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "24-25"
+        },
+        {
+          "type": "2",
+          "text": "2"
+        }
+      ]
+    },
+    {
+      "subtitle": "貨運站屋凸",
+      "imageSources": [
+        "/assets/img/map/貨運站/貨運站屋凸/分區地圖-貨運站屋凸-bg.png",
+        "/assets/img/map/貨運站/貨運站屋凸/分區地圖-貨運站屋凸-frame.png",
+        "/assets/img/map/貨運站/貨運站屋凸/分區地圖-貨運站屋凸-icon.png",
+        "/assets/img/map/貨運站/貨運站屋凸/分區地圖-貨運站屋凸-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "26-27"
+        }
+      ]
+    },
+    {
+      "subtitle": "貨運站外",
+      "imageSources": [
+        "/assets/img/map/貨運站/貨運站外/分區地圖-貨運站外-bg.png",
+        "/assets/img/map/貨運站/貨運站外/分區地圖-貨運站外-frame.png",
+        "/assets/img/map/貨運站/貨運站外/分區地圖-貨運站外-icon.png",
+        "/assets/img/map/貨運站/貨運站外/分區地圖-貨運站外-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "28-31"
+        },
+        {
+          "type": "d",
+          "text": "數量1"
+        },
+        {
+          "type": "b",
+          "text": "數量1"
+        }
+      ]
+    }
+  ]
+}

@@ -12,18 +12,48 @@
       ]" draggable="false" @load="onImageLoad(index)" />
     </div>
 
-    <!-- 控制按鈕 -->
-    <div class="absolute bottom-4 right-4 flex z-10">
-      <button @click="zoomOut" class="">
-        <img src="/assets/img/map/ui/zoom-out.png" class="w-8 h-8 translate-x-4" />
-      </button>
 
-      <img src="/assets/img/map/ui/zoom-bg.png" class="w-14 h-8" />
+    <!-- ui -->
+    <div class="absolute bottom-4 right-4 flex gap-2 z-10">
+      <!-- 警示等級 -->
+      <div class="flex items-center justify-center gap-3 bg-white rounded-md px-4">
+        <span class="text-xl text-[#7d7d7d] font-bold">警示等級</span>
+        <div class="flex items-center gap-1">
+          <div class="w-4 h-4 rounded-full bg-[#cb0077]"></div>
+          <span>等級一</span>
+        </div>
+         <div class="flex items-center gap-1">
+          <div class="w-4 h-4 rounded-full bg-[#ce2b90]"></div>
+          <span>等級二</span>
+        </div>
+         <div class="flex items-center gap-1">
+          <div class="w-4 h-4 rounded-full bg-[#d76bb4]"></div>
+          <span>等級三</span>
+        </div>
+         <div class="flex items-center gap-1">
+          <div class="w-4 h-4 rounded-full bg-[#d582c3]"></div>
+          <span>等級四</span>
+        </div>
+         <div class="flex items-center gap-1">
+          <div class="w-4 h-4 rounded-full bg-[#d8addc]"></div>
+          <span>等級五</span>
+        </div>
+      </div>
 
-      <button @click="zoomIn" class="">
-        <img src="/assets/img/map/ui/zoom-in.png" class="w-8 h-8 -translate-x-4" />
-      </button>
+      <!-- 控制按鈕 -->
+      <div class="flex">
+        <button @click="zoomOut" class="">
+          <img src="/assets/img/map/ui/zoom-out.png" class="w-9 h-9 translate-x-4" />
+        </button>
+
+        <img src="/assets/img/map/ui/zoom-bg.png" class="w-12.5 h-9" />
+
+        <button @click="zoomIn" class="">
+          <img src="/assets/img/map/ui/zoom-in.png" class="w-9 h-9 -translate-x-4" />
+        </button>
+      </div>
     </div>
+
   </div>
 </template>
 

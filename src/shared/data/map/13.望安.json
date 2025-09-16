@@ -1,0 +1,30 @@
+{
+  "title": "望安",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": [
+        "/assets/img/map/望安/分區地圖-望安-bg.png",
+        "/assets/img/map/望安/分區地圖-望安-frame.png",
+        "/assets/img/map/望安/分區地圖-望安-icon.png",
+        "/assets/img/map/望安/分區地圖-望安-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "c",
+          "text": "數量1"
+        },
+        {
+          "type": "a",
+          "text": "數量2"
+        }
+      ]
+    }
+  ]
+}

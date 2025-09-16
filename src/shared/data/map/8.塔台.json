@@ -1,0 +1,30 @@
+{
+  "title": "塔台",
+  "layout": "flex-row-inverse",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": [
+        "/assets/img/map/塔台/分區地圖-塔台-bg.png",
+        "/assets/img/map/塔台/分區地圖-塔台-frame.png",
+        "/assets/img/map/塔台/分區地圖-塔台-icon.png",
+        "/assets/img/map/塔台/分區地圖-塔台-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "T03-06,B01-10,A01-03,05"
+        },
+        {
+          "type": "2",
+          "text": "T01-02"
+        }
+      ]
+    }
+  ]
+}

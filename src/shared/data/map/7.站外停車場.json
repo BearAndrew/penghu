@@ -1,0 +1,30 @@
+{
+  "title": "站外停車場",
+  "layout": "flex-row-inverse",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": [
+        "/assets/img/map/站外停車場/分區地圖-站外停車場-bg.png",
+        "/assets/img/map/站外停車場/分區地圖-站外停車場-frame.png",
+        "/assets/img/map/站外停車場/分區地圖-站外停車場-icon.png",
+        "/assets/img/map/站外停車場/分區地圖-站外停車場-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "P04-57"
+        },
+        {
+          "type": "2",
+          "text": "P01-03"
+        }
+      ]
+    }
+  ]
+}

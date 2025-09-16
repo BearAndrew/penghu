@@ -1,0 +1,106 @@
+{
+  "title": "地下一樓",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "地下一樓A區",
+      "imageSources": [
+        "/assets/img/map/地下一樓/分區地圖-地下一樓A區-bg.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓A區-frame.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓A區-icon.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓A區-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "6-112"
+        },
+        {
+          "type": "2",
+          "text": "1-5"
+        },
+        {
+          "type": "a",
+          "text": "數量4"
+        },
+        {
+          "type": "b",
+          "text": "數量4"
+        },
+        {
+          "type": "e",
+          "text": "數量4"
+        }
+      ]
+    },
+    {
+      "subtitle": "地下一樓B區",
+      "imageSources": [
+        "/assets/img/map/地下一樓/分區地圖-地下一樓B區-bg.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓B區-frame.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓B區-icon.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓B區-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "6-112"
+        },
+        {
+          "type": "2",
+          "text": "1-5"
+        },
+        {
+          "type": "a",
+          "text": "數量5"
+        },
+        {
+          "type": "b",
+          "text": "6枝"
+        },
+        {
+          "type": "e",
+          "text": "4枝"
+        },
+        {
+          "type": "c",
+          "text": "1枝"
+        }
+      ]
+    },
+    {
+      "subtitle": "地下一樓C區",
+      "imageSources": [
+        "/assets/img/map/地下一樓/分區地圖-地下一樓C區-bg.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓C區-frame.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓C區-icon.png",
+        "/assets/img/map/地下一樓/分區地圖-地下一樓C區-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "6-112"
+        },
+        {
+          "type": "2",
+          "text": "1-5"
+        }
+      ]
+    }
+  ]
+}

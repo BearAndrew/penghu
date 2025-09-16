@@ -1,0 +1,50 @@
+{
+  "title": "三樓",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": [
+        "/assets/img/map/三樓/分區地圖-三樓-bg.png",
+        "/assets/img/map/三樓/分區地圖-三樓-frame.png",
+        "/assets/img/map/三樓/分區地圖-三樓-icon.png",
+        "/assets/img/map/三樓/分區地圖-三樓-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "16-40"
+        },
+        {
+          "type": "2",
+          "text": "10-15"
+        },
+        {
+          "type": "3",
+          "text": "1-9"
+        },
+        {
+          "type": "a",
+          "text": "數量6"
+        },
+        {
+          "type": "c",
+          "text": "數量1"
+        },
+        {
+          "type": "b",
+          "text": "數量7"
+        },
+        {
+          "type": "e",
+          "text": "數量6"
+        }
+      ]
+    }
+  ]
+}

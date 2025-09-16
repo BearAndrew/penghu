@@ -1,0 +1,98 @@
+{
+  "title": "一樓",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "一樓(南側)",
+      "imageSources": [
+        "/assets/img/map/一樓/分區地圖-一樓(南側)-bg.png",
+        "/assets/img/map/一樓/分區地圖-一樓(南側)-frame.png",
+        "/assets/img/map/一樓/分區地圖-一樓(南側)-icon.png",
+        "/assets/img/map/一樓/分區地圖-一樓(南側)-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "22-135,182"
+        },
+        {
+          "type": "2",
+          "text": "3-4"
+        },
+        {
+          "type": "3",
+          "text": "8-11,14-21"
+        },
+        {
+          "type": "4",
+          "text": "1"
+        },
+        {
+          "type": "a",
+          "text": "數量12"
+        },
+        {
+          "type": "b",
+          "text": "15枝"
+        },
+        {
+          "type": "c",
+          "text": "1枝"
+        },
+        {
+          "type": "d",
+          "text": "1枝"
+        }
+      ]
+    },
+    {
+      "subtitle": "一樓(國際線北側)",
+      "imageSources": [
+        "/assets/img/map/一樓/分區地圖-一樓(國際線北側)-bg.png",
+        "/assets/img/map/一樓/分區地圖-一樓(國際線北側)-frame.png",
+        "/assets/img/map/一樓/分區地圖-一樓(國際線北側)-icon.png",
+        "/assets/img/map/一樓/分區地圖-一樓(國際線北側)-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "136-183"
+        },
+        {
+          "type": "2",
+          "text": "5-7"
+        },
+        {
+          "type": "3",
+          "text": "12-13"
+        },
+          {
+          "type": "4",
+          "text": "2"
+        },
+        {
+          "type": "a",
+          "text": "數量11"
+        },
+        {
+          "type": "b",
+          "text": "13枝"
+        },
+        {
+          "type": "e",
+          "text": "2枝"
+        }
+      ]
+    }
+  ]
+}

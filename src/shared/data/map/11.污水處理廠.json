@@ -1,0 +1,26 @@
+{
+  "title": "污水處理廠",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": [
+        "/assets/img/map/污水處理廠/分區地圖-污水處理廠-bg.png",
+        "/assets/img/map/污水處理廠/分區地圖-污水處理廠-frame.png",
+        "/assets/img/map/污水處理廠/分區地圖-污水處理廠-icon.png",
+        "/assets/img/map/污水處理廠/分區地圖-污水處理廠-point.png"
+      ],
+      "dataPoints": [
+        { "x": 50, "y": 60 },
+        { "x": 30, "y": 20 },
+        { "x": 40, "y": 10 }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": "1-23"
+        }
+      ]
+    }
+  ]
+}
