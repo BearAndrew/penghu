@@ -1,6 +1,6 @@
 <template>
   <div ref="container"
-    class="relative w-full h-0 overflow-hidden rounded-lg select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
+    class="relative w-full h-0 overflow-hidden rounded-sm select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
     @mousedown="startDrag" @wheel.prevent="onWheelZoom">
     <!-- 可拖曳 + 縮放的容器 -->
     <div ref="drag-content" class="absolute top-0 left-0 h-full" :style="contentStyle">

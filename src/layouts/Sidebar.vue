@@ -47,7 +47,7 @@ export default {
         },
         {
           label: "地圖",
-          path: "/map",
+          path: "/map/1",
         },
         {
           label: "第一層",

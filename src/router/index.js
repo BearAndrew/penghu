@@ -1,23 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "@/pages/Login.vue";
-import Dashboard from "@/pages/Dashboard.vue";
-import PermissionCreate from "@/pages/permission-management/Create.vue";
-import PermissionSetting from "@/pages/permission-management/Setting.vue";
-import PermissionUpdate from "@/pages/permission-management/Update.vue";
-import Report from "@/pages/Report.vue";
-import Map from "@/pages/map/MapLayout.vue";
-
-import DefaultLayout from "@/layouts/DefaultLayout.vue";
 
 const routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: () => import('../pages/Login.vue'),
   },
   {
     path: "/",
-    component: DefaultLayout,
+    component: () => import('../layouts/DefaultLayout.vue'),
     children: [
       {
         path: "",
@@ -26,32 +17,32 @@ const routes = [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: Dashboard,
+        component: () => import('../pages/Dashboard.vue'),
       },
       {
         path: "permission-management/create",
         name: "PermissionCreate",
-        component: PermissionCreate,
+        component: () => import('../pages/permission-management/Create.vue'),
       },
       {
         path: "permission-management/setting",
         name: "PermissionSetting",
-        component: PermissionSetting,
+        component: () => import('../pages/permission-management/Setting.vue'),
       },
       {
         path: "permission-management/update",
         name: "PermissionUpdate",
-        component: PermissionUpdate,
+        component: () => import('../pages/permission-management/Update.vue'),
       },
       {
         path: "report",
         name: "Report",
-        component: Report,
+        component: () => import('../pages/Report.vue'),
       },
       {
-        path: "/map",
+        path: "map/:id/:subId?",
         name: "Map",
-        component: Map,
+        component: () => import('../pages/map/MapLayout.vue'),
       },
     ],
   },
@@ -60,6 +51,7 @@ const routes = [
     redirect: "/login",
   },
 ];
+
 
 const router = createRouter({
   history: createWebHistory(),
