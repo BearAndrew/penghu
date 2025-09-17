@@ -18,6 +18,7 @@
 <script>
 import MapComponent from './components/Map.vue';
 import MapInfoComponent from './components/Info.vue';
+import MapDataService from '@/shared/services/MapDataService';
 
 export default {
   name: 'MapPage',
@@ -27,7 +28,13 @@ export default {
   },
   data() {
     return {
+      mapDataList: []
     };
   },
+  created() {
+    this.mapDataList = MapDataService.getAllMaps();
+    console.log('Map data list:', JSON.stringify(this.mapDataList));
+    // console.log('Map data list:', this.mapDataList);
+  }
 }
 </script>

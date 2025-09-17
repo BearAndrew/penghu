@@ -19,19 +19,17 @@
       backgroundSize: '100% 100%'
     }">
       <!-- 判斷路由 -->
-      <template v-if="isPermissionPage">
+      <template v-if="showSubNavbar">
         <!-- 權限管理內容 -->
         <div class="flex items-center justify-between w-full h-full overflow-hidden">
-          <!-- 子頁面 -->
-          <div class="flex h-full -ml-3.5">
-            <div :class="['tab-button', isCreatePage ? 'active-tab' : '']" @click="goToPage('create')">
-              新建
-            </div>
-            <div :class="['tab-button', isSettingPage ? 'active-tab' : '']" @click="goToPage('setting')">
-              設定
-            </div>
-            <div :class="['tab-button', isUpdatePage ? 'active-tab' : '']" @click="goToPage('update')">
-              修改
+          <!-- 子頁面按鈕：根據當前子導覽資料渲染 -->
+          <div class="flex h-full -ml-4">
+            <div v-for="(child, index) in currentSubNavChildren" :key="index"
+              :class="['tab-button',
+              isActiveTab(child.path) ? 'active-tab' : '']"
+              :style="{ transform: `translateX(-${index * 8}px)` }"
+              @click="goToPage(child.path)">
+              <span :class="index === 0 ? 'ml-2' : ''">{{ child.label }}</span>
             </div>
           </div>
 
@@ -79,11 +77,27 @@
 
 
 <script>
+import MapDataService from '@/shared/services/MapDataService';
+
+
 export default {
   name: 'NavbarMenu',
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      subNavbar: [
+        {
+          path: '/permission-management',
+          children: [
+            { label: '新建', path: 'create' },
+            { label: '設定', path: 'setting' },
+            { label: '修改', path: 'update' },
+          ]
+        },
+        {
+          path: '/map',
+        }
+      ]
     };
   },
   methods: {
@@ -103,22 +117,39 @@ export default {
     goDashboard() {
       this.$router.push('/')
     },
-    goToPage(page) {
-      this.$router.push(`/permission-management/${page}`);
-    }
+    goToPage(childPath) {
+      const base = this.matchedSubNav?.path || '';
+      this.$router.push(`${base}/${childPath}`);
+    },
+    isActiveTab(childPath) {
+      const base = this.matchedSubNav?.path || '';
+      return this.$route.path === `${base}/${childPath}`;
+    },
   },
   computed: {
-    isPermissionPage() {
-      return this.$route.path.includes('/permission-management');
+    showSubNavbar() {
+      return !!this.matchedSubNav;
     },
-    isCreatePage() {
-      return this.$route.path === '/permission-management/create';
+    matchedSubNav() {
+      return this.subNavbar.find(nav => this.$route.path.startsWith(nav.path));
     },
-    isSettingPage() {
-      return this.$route.path === '/permission-management/setting';
+    currentSubNavChildren() {
+      if (!this.matchedSubNav || !Array.isArray(this.matchedSubNav.children)) {
+        return [];
+      }
+      return this.matchedSubNav.children || [];
     },
-    isUpdatePage() {
-      return this.$route.path === '/permission-management/update';
+  },
+  created() {
+    const maps = MapDataService.getAllMaps();
+    const mapChildren = maps.map((mapItem, index) => ({
+      label: mapItem.title,
+      path: String(index + 1)
+    }));
+
+    const mapNav = this.subNavbar.find(item => item.path === '/map');
+    if (mapNav) {
+      mapNav.children = mapChildren;
     }
   },
   mounted() {
@@ -132,11 +163,11 @@ export default {
 
 <style scoped>
 .tab-button {
-  @apply flex items-center text-white text-[36px] px-8 h-full cursor-pointer relative;
+  @apply flex items-center text-white text-[24px] whitespace-nowrap px-4 h-full cursor-pointer relative;
 }
 
 .active-tab {
   @apply bg-gradient-to-r from-[#47b69a] to-[#0287b9];
-  clip-path: polygon(0% 100%, 10% 0%, 100% 0%, 90% 100%);
+  clip-path: polygon(0% 100%, 1rem 0%, 100% 0%, calc(100% - 1rem) 100%);
 }
 </style>
