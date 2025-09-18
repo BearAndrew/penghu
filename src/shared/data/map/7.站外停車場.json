@@ -1,6 +1,6 @@
 {
   "title": "站外停車場",
-  "layout": "flex-row-inverse",
+  "layout": "flex-row-reverse",
   "contents": [
     {
       "subtitle": "",

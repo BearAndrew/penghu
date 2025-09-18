@@ -24,10 +24,8 @@
         <div class="flex items-center justify-between w-full h-full overflow-hidden">
           <!-- 子頁面按鈕：根據當前子導覽資料渲染 -->
           <div class="flex h-full -ml-4">
-            <div v-for="(child, index) in currentSubNavChildren" :key="index"
-              :class="['tab-button',
-              isActiveTab(child.path) ? 'active-tab' : '']"
-              :style="{ transform: `translateX(-${index * 8}px)` }"
+            <div v-for="(child, index) in currentSubNavChildren" :key="index" :class="['tab-button',
+              isActiveTab(child.path) ? 'active-tab' : '']" :style="{ transform: `translateX(-${index * 8}px)` }"
               @click="goToPage(child.path)">
               <span :class="index === 0 ? 'ml-2' : ''">{{ child.label }}</span>
             </div>
@@ -123,8 +121,9 @@ export default {
     },
     isActiveTab(childPath) {
       const base = this.matchedSubNav?.path || '';
-      return this.$route.path === `${base}/${childPath}`;
-    },
+      const targetPath = `${base}/${childPath}`;
+      return this.$route.path.startsWith(targetPath);
+    }
   },
   computed: {
     showSubNavbar() {
@@ -144,7 +143,7 @@ export default {
     const maps = MapDataService.getAllMaps();
     const mapChildren = maps.map((mapItem, index) => ({
       label: mapItem.title,
-      path: String(index + 1)
+      path: String(index + 1) + '/1'
     }));
 
     const mapNav = this.subNavbar.find(item => item.path === '/map');

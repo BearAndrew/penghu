@@ -1,12 +1,12 @@
 <template>
   <div class="flex items-center justify-between gap-2 w-full bg-[#c7c7c7] rounded-md px-2 py-1" v-if="typeInfo">
-    <div class="flex items-center gap-2">
+    <div class="flex items-center">
       <!-- icon -->
-      <img :src="typeInfo.iconImg" class="w-6 h-6" />
+      <img :src="typeInfo.iconImg" class="w-6 h-6 mr-2" />
 
       <!-- 內容 -->
       <span>{{ typeInfo.label }}</span>
-      <span>({{ detail }})</span>
+      <span>({{ text }})</span>
     </div>
 
     <img src="/assets/img/map/ui/hamburger.png" class="h-6" />
@@ -21,7 +21,7 @@ export default {
       type: String,
       required: true,
     },
-    detail: {
+    text: {
       type: String,
       default: '',
     },

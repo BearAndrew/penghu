@@ -1,6 +1,6 @@
 <template>
   <div ref="container"
-    class="relative w-full h-0 overflow-hidden rounded-sm select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
+    class="relative overflow-hidden rounded-sm select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
     @mousedown="startDrag" @wheel.prevent="onWheelZoom">
     <!-- 可拖曳 + 縮放的容器 -->
     <div ref="drag-content" class="absolute top-0 left-0 h-full" :style="contentStyle">
@@ -10,6 +10,20 @@
         'h-full object-contain pointer-events-none select-none',
         imagesReady ? '' : 'invisible'
       ]" draggable="false" @load="onImageLoad(index)" />
+
+      <div>
+        <div v-for="(point, index) in activePoints" :key="index"
+          class="absolute flex items-center justify-center text-white text-[4px] font-bold"
+          :style="{ top: point.y + '%', left: point.x + '%' }">
+          <div
+            class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500 z-10">
+            {{ point.label }}
+          </div>
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-red-300 animate-pulse-radiate">
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -22,19 +36,19 @@
           <div class="w-4 h-4 rounded-full bg-[#cb0077]"></div>
           <span>等級一</span>
         </div>
-         <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1">
           <div class="w-4 h-4 rounded-full bg-[#ce2b90]"></div>
           <span>等級二</span>
         </div>
-         <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1">
           <div class="w-4 h-4 rounded-full bg-[#d76bb4]"></div>
           <span>等級三</span>
         </div>
-         <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1">
           <div class="w-4 h-4 rounded-full bg-[#d582c3]"></div>
           <span>等級四</span>
         </div>
-         <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1">
           <div class="w-4 h-4 rounded-full bg-[#d8addc]"></div>
           <span>等級五</span>
         </div>
@@ -60,29 +74,27 @@
 <script>
 export default {
   name: 'MapComponent',
+  props: {
+    imageSources: {
+      type: Array,
+      required: true,
+      default: () => []
+    },
+    dataPoints: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    activePointsIndex: {
+      type: Array,
+      required: false,
+      default: () => []
+    }
+  },
   data() {
     return {
-      // 所有圖片來源陣列（重疊）
-      imageSources: [
-        '/assets/img/map/頂樓/分區地圖-頂樓-bg.png',
-        '/assets/img/map/頂樓/分區地圖-頂樓-frame.png',
-        '/assets/img/map/頂樓/分區地圖-頂樓-icon.png',
-        '/assets/img/map/頂樓/分區地圖-頂樓-point.png',
-      ],
-      // imageSources: [
-      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-bg.png',
-      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-frame.png',
-      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-icon.png',
-      //   '/assets/img/map/二樓/南側/分區地圖-二樓(南側)-point.png',
-      // ],
-      // imageSources: [
-      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-bg.png',
-      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-frame.png',
-      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-icon.png',
-      //   '/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-point.png',
-      // ],
       imagesReady: false,
-      scale: 1,
+      scale: 2,
       minScale: 0.5,
       maxScale: 3,
       scaleStep: 0.1,
@@ -96,9 +108,14 @@ export default {
     contentStyle() {
       return {
         transform: `scale(${this.scale}) translate(${this.translate.x}px, ${this.translate.y}px)`,
-        transformOrigin: 'center center',
+        transformOrigin: 'top left',
         transition: this.isDragging ? 'none' : 'transform 0.1s ease-out'
       }
+    },
+    activePoints() {
+      return this.activePointsIndex
+        .map(i => this.dataPoints[i])
+        .filter(p => p);
     }
   },
   methods: {
@@ -112,10 +129,6 @@ export default {
     },
     zoomOut() {
       this.scale = Math.max(this.scale - this.scaleStep, this.minScale)
-    },
-    resetView() {
-      this.scale = 1
-      this.translate = { x: 0, y: 0 }
     },
     startDrag(e) {
       this.isDragging = true
@@ -161,7 +174,6 @@ export default {
     },
     centerContent() {
       this.$nextTick(() => {
-        this.scale = 1;
         const container = this.$refs.container;
         const dragContent = this.$refs['drag-content'];
         if (!container || !dragContent) return;
@@ -169,14 +181,15 @@ export default {
         const containerRect = container.getBoundingClientRect();
         const contentRect = dragContent.getBoundingClientRect();
 
-        // content 原始大小（未縮放）
         const containerWidth = containerRect.width;
         const contentWidth = contentRect.width;
+        const containerHeight = containerRect.height;
+        const contentHeight = contentRect.height;
 
         // 以 scale=1 置中時，translate y
         this.initialTranslate = {
           x: containerWidth / 2 - contentWidth / 2,
-          y: 0
+          y: (containerHeight / 2 - contentHeight / 2) / this.scale
         };
 
         // 同時把 translate 初始設為 initialTranslate
@@ -186,7 +199,28 @@ export default {
           this.imagesReady = true;
         }, 100);
       });
+    },
+    activePointsIndexChange(newVal) {
+      this.activePoints = newVal.map(i => this.dataPoints[i]).filter(p => p);
     }
   }
 }
 </script>
+
+<style>
+@keyframes pulse-radiate {
+  0% {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(0.2);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-radiate {
+  animation: pulse-radiate 2s infinite;
+}
+</style>

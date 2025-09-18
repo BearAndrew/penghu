@@ -1,6 +1,6 @@
 {
   "title": "塔台",
-  "layout": "flex-row-inverse",
+  "layout": "flex-row-reverse",
   "contents": [
     {
       "subtitle": "",

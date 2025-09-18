@@ -40,7 +40,7 @@ const routes = [
         component: () => import('../pages/Report.vue'),
       },
       {
-        path: "map/:id/:subId?",
+        path: "map/:id/:subId",
         name: "Map",
         component: () => import('../pages/map/MapLayout.vue'),
       },
