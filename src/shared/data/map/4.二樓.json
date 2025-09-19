@@ -5,10 +5,10 @@
     {
       "subtitle": "二樓(南側)",
       "imageSources": [
-        "/assets/img/map/二樓/南側/分區地圖-二樓(南側)-bg.png",
-        "/assets/img/map/二樓/南側/分區地圖-二樓(南側)-frame.png",
-        "/assets/img/map/二樓/南側/分區地圖-二樓(南側)-icon.png",
-        "/assets/img/map/二樓/南側/分區地圖-二樓(南側)-point.png"
+        "/assets/img/map/二樓/二樓(南側)/分區地圖-二樓(南側)-bg.png",
+        "/assets/img/map/二樓/二樓(南側)/分區地圖-二樓(南側)-frame.png",
+        "/assets/img/map/二樓/二樓(南側)/分區地圖-二樓(南側)-icon.png",
+        "/assets/img/map/二樓/二樓(南側)/分區地圖-二樓(南側)-point.png"
       ],
       "dataPoints": [
         { "x": 50, "y": 60 },
@@ -49,10 +49,10 @@
     {
       "subtitle": "二樓(國際線北側)",
       "imageSources": [
-        "/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-bg.png",
-        "/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-frame.png",
-        "/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-icon.png",
-        "/assets/img/map/二樓/國際線北側/分區地圖-二樓(國際線北側)-point.png"
+        "/assets/img/map/二樓/二樓(國際線北側)/分區地圖-二樓(國際線北側)-bg.png",
+        "/assets/img/map/二樓/二樓(國際線北側)/分區地圖-二樓(國際線北側)-frame.png",
+        "/assets/img/map/二樓/二樓(國際線北側)/分區地圖-二樓(國際線北側)-icon.png",
+        "/assets/img/map/二樓/二樓(國際線北側)/分區地圖-二樓(國際線北側)-point.png"
       ],
       "dataPoints": [
         { "x": 50, "y": 60 },

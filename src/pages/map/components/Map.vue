@@ -11,12 +11,12 @@
         imagesReady ? '' : 'invisible'
       ]" draggable="false" @load="onImageLoad(index)" />
 
-      <div>
+      <div id="points-layer">
         <div v-for="(point, index) in activePoints" :key="index"
           class="absolute flex items-center justify-center text-white text-[4px] font-bold"
           :style="{ top: point.y + '%', left: point.x + '%' }">
           <div
-            class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500 z-10">
+            class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-red-500 z-10">
             {{ point.label }}
           </div>
           <div
@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       imagesReady: false,
-      scale: 2,
+      scale: 1,
       minScale: 0.5,
       maxScale: 3,
       scaleStep: 0.1,

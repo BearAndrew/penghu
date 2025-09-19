@@ -5,9 +5,7 @@
     {
       "subtitle": "",
       "imageSources": [
-        "/assets/img/map/塔台/分區地圖-塔台-bg.png",
         "/assets/img/map/塔台/分區地圖-塔台-frame.png",
-        "/assets/img/map/塔台/分區地圖-塔台-icon.png",
         "/assets/img/map/塔台/分區地圖-塔台-point.png"
       ],
       "dataPoints": [

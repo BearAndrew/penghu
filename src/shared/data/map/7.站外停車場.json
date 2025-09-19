@@ -5,9 +5,7 @@
     {
       "subtitle": "",
       "imageSources": [
-        "/assets/img/map/站外停車場/分區地圖-站外停車場-bg.png",
         "/assets/img/map/站外停車場/分區地圖-站外停車場-frame.png",
-        "/assets/img/map/站外停車場/分區地圖-站外停車場-icon.png",
         "/assets/img/map/站外停車場/分區地圖-站外停車場-point.png"
       ],
       "dataPoints": [

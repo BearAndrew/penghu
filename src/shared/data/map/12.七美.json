@@ -7,8 +7,7 @@
       "imageSources": [
         "/assets/img/map/七美/分區地圖-七美-bg.png",
         "/assets/img/map/七美/分區地圖-七美-frame.png",
-        "/assets/img/map/七美/分區地圖-七美-icon.png",
-        "/assets/img/map/七美/分區地圖-七美-point.png"
+        "/assets/img/map/七美/分區地圖-七美-icon.png"
       ],
       "dataPoints": [
         { "x": 50, "y": 60 },
