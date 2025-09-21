@@ -142,7 +142,6 @@ export default {
       if (!this.matchedSubNav || !Array.isArray(this.matchedSubNav.children)) {
         return [];
       }
-      console.log(this.subNavbar);
       return this.matchedSubNav.children || [];
     },
   },

@@ -1,0 +1,63 @@
+{
+  "title": "全區",
+  "layout": "flex-col",
+  "contents": [
+    {
+      "subtitle": "",
+      "imageSources": ["/assets/img/map/全區/分區地圖整合.jpg"],
+      "dataPoints": [
+        { "x": 70, "y": 46, "label": "B1", "route": "/map/2/1" },
+        { "x": 70, "y": 37, "label": "1F", "route": "/map/3/1" },
+        { "x": 70, "y": 28, "label": "2F", "route": "/map/4/1" },
+        { "x": 70, "y": 19, "label": "3F", "route": "/map/5/1" },
+        { "x": 70, "y": 10, "label": "頂樓", "route": "/map/6/1" },
+        { "x": 50, "y": 50, "label": "站外停車場", "route": "/map/7/1" },
+        { "x": 85, "y": 20, "label": "塔台", "route": "/map/8/1"  },
+        { "x": 22, "y": 44, "label": "宿舍1F", "route": "/map/9/1" },
+        { "x": 22, "y": 35, "label": "宿舍2F", "route": "/map/9/2" },
+        { "x": 30, "y": 17, "label": "貨運站", "route": "/map/10/1" },
+        { "x": 17, "y": 60, "label": "污水處理廠", "route": "/map/11/1" },
+        { "x": 85, "y": 72.5, "label": "七美", "route": "/map/12/1" },
+        { "x": 85, "y": 50, "label": "望安", "route": "/map/13/1" }
+      ],
+      "info": [
+        {
+          "type": "1",
+          "text": ""
+        },
+        {
+          "type": "2",
+          "text": ""
+        },
+        {
+          "type": "3",
+          "text": ""
+        },
+        {
+          "type": "4",
+          "text": ""
+        },
+        {
+          "type": "a",
+          "text": "數量4"
+        },
+        {
+          "type": "b",
+          "text": "數量4"
+        },
+        {
+          "type": "c",
+          "text": "數量4"
+        },
+        {
+          "type": "d",
+          "text": "數量4"
+        },
+        {
+          "type": "e",
+          "text": "數量4"
+        }
+      ]
+    }
+  ]
+}

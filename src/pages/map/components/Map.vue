@@ -11,7 +11,7 @@
         'h-full object-contain pointer-events-none select-none',
       ]" draggable="false" @load="onImageLoad(index)" />
 
-      <div id="points-layer">
+      <div v-if="!isOverall" id="points-layer" :key="activePointsIndex.join(',')">
         <div v-for="(point, index) in activePoints" :key="index"
           class="absolute flex items-center justify-center text-white text-[8px] font-bold"
           :style="{ top: point.y + '%', left: point.x + '%' }">
@@ -21,6 +21,22 @@
           </div>
           <div
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-red-300 animate-pulse-radiate">
+          </div>
+        </div>
+      </div>
+
+      <!-- 全區才顯示 -->
+      <div v-if="isOverall" id="overall-layer" class="text-white">
+        <div v-for="(point, index) in dataPoints" :key="index"
+          class="absolute flex items-center justify-center text-white text-lg font-bold"
+          :style="{ top: point.y + '%', left: point.x + '%' }" @click="navigateTo(point.route)">
+          <div class="px-2 py-1 rounded-md shadow-[0_3px_8px_rgba(0,0,0,0.4)] cursor-pointer z-10"
+            :class="activePoints.includes(point) ? 'bg-red-500' : 'bg-gray-300'">
+            {{ point.label }}
+          </div>
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-2 py-1 w-fit h-fit rounded-md text-red-300 bg-red-300 whitespace-nowrap animate-pulse-radiate">
+            {{ point.label }}
           </div>
         </div>
       </div>
@@ -89,6 +105,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    isOverall: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
@@ -203,9 +224,6 @@ export default {
       // 同時把 translate 初始設為 initialTranslate
       this.translate = { ...this.initialTranslate };
 
-      console.log('containerWidth', containerWidth);
-      console.log('contentWidth', contentWidth / this.scale);
-      console.log('centerContent', this.translate);
       this.scale = 1;
       setTimeout(() => {
         this.imagesReady = true;
@@ -213,6 +231,11 @@ export default {
     },
     activePointsIndexChange(newVal) {
       this.activePoints = newVal.map(i => this.dataPoints[i]).filter(p => p);
+    },
+    navigateTo(route) {
+      if (route) {
+        this.$router.push(route);
+      }
     }
   }
 }

@@ -12,7 +12,7 @@
       <div class="flex relative"
         :class="currentMap?.layout == 'flex-col' ? 'flex-grow-[2] w-full h-0' : 'flex-grow w-0 h-full'">
         <MapComponent class="w-full h-full" :image-sources="currentContent.imageSources"
-          :data-points="currentContent.dataPoints" :active-points-index="activePointsIndex" />
+          :data-points="currentContent.dataPoints" :active-points-index="activePointsIndex" :is-overall="routeId === 1" />
 
         <div v-if="currentMap.contents.length > 1"
           class="absolute top-4 left-4 flex items-center justify-center gap-2 w-fit h-fit">
@@ -22,6 +22,12 @@
               : 'bg-gray-400'">
             {{ value.subtitle }}
           </router-link>
+        </div>
+
+        <div
+          class="absolute bottom-4 left-4 flex items-center justify-center gap-20 w-fit h-fit bg-gradient-to-r from-[#9976fd] to-[#6f3eff] pl-4 pr-2 py-1 rounded-md text-white cursor-pointer">
+          <span>故障列表</span>
+          <img src="/assets/img/map/ui/hamburger.png" class="h-6" />
         </div>
       </div>
       <MapInfoComponent :class="currentMap?.layout == 'flex-col' ? 'flex-grow w-full h-0' : 'w-[400px] h-full'"
@@ -46,8 +52,18 @@ export default {
   data() {
     return {
       mapDataList: [],
-      activePointsIndex: [] // 呼叫API動態更新這個數值，標出地圖上發生警戒的位置
+      activePointsIndex: [], // 呼叫API動態更新這個數值，標出地圖上發生警戒的位置
+      isOverall: false
     };
+  },
+  watch: {
+    '$route.params': {
+      handler() {
+        this.updateActivePointsIndex();
+      },
+      immediate: true,
+      deep: true
+    }
   },
   computed: {
     routeId() {
