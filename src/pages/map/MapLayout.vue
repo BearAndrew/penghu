@@ -82,10 +82,13 @@ export default {
   },
   created() {
     this.mapDataList = MapDataService.getAllMaps();
-    // console.log('Map data list:', JSON.stringify(this.mapDataList));
+
+    // =========== 測試用，之後改成呼叫API ===========
     this.updateActivePointsIndex();
+    // ============================================
   },
   methods: {
+    // 更新 activePointsIndex
     updateActivePointsIndex() {
       const points = this.currentContent?.dataPoints || [];
       this.activePointsIndex = points.map((_, index) => index);
