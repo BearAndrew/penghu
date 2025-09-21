@@ -122,7 +122,13 @@ export default {
     isActiveTab(childPath) {
       const base = this.matchedSubNav?.path || '';
       const targetPath = `${base}/${childPath}`;
-      return this.$route.path.startsWith(targetPath);
+
+      const currentSegments = this.$route.path.split('/').filter(Boolean);
+      const targetSegments = targetPath.split('/').filter(Boolean);
+
+      const isMatch = targetSegments.every((seg, i) => seg === currentSegments[i]);
+
+      return isMatch; 
     }
   },
   computed: {
@@ -136,6 +142,7 @@ export default {
       if (!this.matchedSubNav || !Array.isArray(this.matchedSubNav.children)) {
         return [];
       }
+      console.log(this.subNavbar);
       return this.matchedSubNav.children || [];
     },
   },
@@ -143,7 +150,7 @@ export default {
     const maps = MapDataService.getAllMaps();
     const mapChildren = maps.map((mapItem, index) => ({
       label: mapItem.title,
-      path: String(index + 1) + '/1'
+      path: String(index + 1)
     }));
 
     const mapNav = this.subNavbar.find(item => item.path === '/map');

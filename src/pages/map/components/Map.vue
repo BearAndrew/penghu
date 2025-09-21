@@ -3,17 +3,17 @@
     class="relative overflow-hidden rounded-sm select-none bg-gradient-to-b from-[#313d5d] to-[#131f34]"
     @mousedown="startDrag" @wheel.prevent="onWheelZoom">
     <!-- 可拖曳 + 縮放的容器 -->
-    <div ref="drag-content" class="absolute top-0 left-0 h-full" :style="contentStyle">
+    <div ref="drag-content" class="absolute top-0 left-0 h-full" :class="imagesReady ? '' : 'invisible'
+      " :style="contentStyle">
       <!-- 疊加所有圖片 -->
       <img v-for="(src, index) in imageSources" :key="index" :src="src" :class="[
         index === 0 ? '' : 'absolute top-0 left-0',
         'h-full object-contain pointer-events-none select-none',
-        imagesReady ? '' : 'invisible'
       ]" draggable="false" @load="onImageLoad(index)" />
 
       <div id="points-layer">
         <div v-for="(point, index) in activePoints" :key="index"
-          class="absolute flex items-center justify-center text-white text-[4px] font-bold"
+          class="absolute flex items-center justify-center text-white text-[8px] font-bold"
           :style="{ top: point.y + '%', left: point.x + '%' }">
           <div
             class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-red-500 z-10">
@@ -104,6 +104,15 @@ export default {
       initialTranslate: { x: 0, y: 0 },
     }
   },
+  watch: {
+    imageSources: {
+      handler() {
+        this.imagesReady = false;
+        this.imagesLoaded = 0;
+      },
+      immediate: true,
+    }
+  },
   computed: {
     contentStyle() {
       return {
@@ -173,32 +182,34 @@ export default {
       this.scale = newScale
     },
     centerContent() {
-      this.$nextTick(() => {
-        const container = this.$refs.container;
-        const dragContent = this.$refs['drag-content'];
-        if (!container || !dragContent) return;
+      const container = this.$refs.container;
+      const dragContent = this.$refs['drag-content'];
+      if (!container || !dragContent) return;
 
-        const containerRect = container.getBoundingClientRect();
-        const contentRect = dragContent.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const contentRect = dragContent.getBoundingClientRect();
 
-        const containerWidth = containerRect.width;
-        const contentWidth = contentRect.width;
-        const containerHeight = containerRect.height;
-        const contentHeight = contentRect.height;
+      const containerWidth = containerRect.width;
+      const containerHeight = containerRect.height;
+      const contentWidth = contentRect.width / this.scale;
+      const contentHeight = contentRect.height / this.scale;
 
-        // 以 scale=1 置中時，translate y
-        this.initialTranslate = {
-          x: containerWidth / 2 - contentWidth / 2,
-          y: (containerHeight / 2 - contentHeight / 2) / this.scale
-        };
+      // 以 scale=1 置中時，translate y
+      this.initialTranslate = {
+        x: containerWidth / 2 - contentWidth / 2,
+        y: containerHeight / 2 - contentHeight / 2
+      };
 
-        // 同時把 translate 初始設為 initialTranslate
-        this.translate = { ...this.initialTranslate };
+      // 同時把 translate 初始設為 initialTranslate
+      this.translate = { ...this.initialTranslate };
 
-        setTimeout(() => {
-          this.imagesReady = true;
-        }, 100);
-      });
+      console.log('containerWidth', containerWidth);
+      console.log('contentWidth', contentWidth / this.scale);
+      console.log('centerContent', this.translate);
+      this.scale = 1;
+      setTimeout(() => {
+        this.imagesReady = true;
+      }, 100);
     },
     activePointsIndexChange(newVal) {
       this.activePoints = newVal.map(i => this.dataPoints[i]).filter(p => p);

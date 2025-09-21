@@ -4,11 +4,11 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: () => import('../pages/Login.vue'),
+    component: () => import("../pages/Login.vue"),
   },
   {
     path: "/",
-    component: () => import('../layouts/DefaultLayout.vue'),
+    component: () => import("../layouts/DefaultLayout.vue"),
     children: [
       {
         path: "",
@@ -17,32 +17,42 @@ const routes = [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: () => import('../pages/Dashboard.vue'),
+        component: () => import("../pages/Dashboard.vue"),
       },
       {
         path: "permission-management/create",
         name: "PermissionCreate",
-        component: () => import('../pages/permission-management/Create.vue'),
+        component: () => import("../pages/permission-management/Create.vue"),
       },
       {
         path: "permission-management/setting",
         name: "PermissionSetting",
-        component: () => import('../pages/permission-management/Setting.vue'),
+        component: () => import("../pages/permission-management/Setting.vue"),
       },
       {
         path: "permission-management/update",
         name: "PermissionUpdate",
-        component: () => import('../pages/permission-management/Update.vue'),
+        component: () => import("../pages/permission-management/Update.vue"),
       },
       {
         path: "report",
         name: "Report",
-        component: () => import('../pages/Report.vue'),
+        component: () => import("../pages/Report.vue"),
       },
       {
-        path: "map/:id/:subId",
+        path: "/map",
+        redirect: "/map/1/1",
+      },
+      {
+        path: "/map/:id",
+        redirect: (to) => {
+          return `/map/${to.params.id}/1`;
+        },
+      },
+      {
+        path: "/map/:id/:subId",
         name: "Map",
-        component: () => import('../pages/map/MapLayout.vue'),
+        component: () => import("../pages/map/MapLayout.vue"),
       },
     ],
   },
@@ -51,7 +61,6 @@ const routes = [
     redirect: "/login",
   },
 ];
-
 
 const router = createRouter({
   history: createWebHistory(),
