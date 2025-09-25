@@ -142,19 +142,19 @@
           "text": "2"
         },
         {
-          "type": "a",
+          "type": "r",
           "text": "數量11"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "13枝"
         },
         {
-          "type": "e",
+          "type": "p",
           "text": "2枝"
         },
         {
-          "type": "d",
+          "type": "vr",
           "text": "2枝"
         }
       ]
@@ -233,15 +233,15 @@
           "text": "2"
         },
         {
-          "type": "a",
+          "type": "r",
           "text": "數量11"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "數量13"
         },
         {
-          "type": "d",
+          "type": "vr",
           "text": "數量2"
         }
       ]

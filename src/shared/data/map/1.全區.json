@@ -38,23 +38,23 @@
           "text": ""
         },
         {
+          "type": "r",
+          "text": "數量4"
+        },
+        {
+          "type": "g",
+          "text": "數量4"
+        },
+        {
           "type": "a",
           "text": "數量4"
         },
         {
-          "type": "b",
+          "type": "vr",
           "text": "數量4"
         },
         {
-          "type": "c",
-          "text": "數量4"
-        },
-        {
-          "type": "d",
-          "text": "數量4"
-        },
-        {
-          "type": "e",
+          "type": "p",
           "text": "數量4"
         }
       ]

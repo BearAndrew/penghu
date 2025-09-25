@@ -55,15 +55,15 @@
           "text": "1"
         },
         {
-          "type": "a",
+          "type": "r",
           "text": "數量3"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "數量3"
         },
         {
-          "type": "e",
+          "type": "p",
           "text": "數量3"
         }
       ]
@@ -131,11 +131,11 @@
           "text": "28-31"
         },
         {
-          "type": "d",
+          "type": "vr",
           "text": "數量1"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "數量1"
         }
       ]

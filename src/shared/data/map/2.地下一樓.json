@@ -90,15 +90,15 @@
           "text": "1-5"
         },
         {
-          "type": "a",
+          "type": "r",
           "text": "數量4"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "數量4"
         },
         {
-          "type": "e",
+          "type": "p",
           "text": "數量4"
         }
       ]
@@ -196,19 +196,19 @@
           "text": "1-5"
         },
         {
-          "type": "a",
+          "type": "r",
           "text": "數量5"
         },
         {
-          "type": "b",
+          "type": "g",
           "text": "6枝"
         },
         {
-          "type": "e",
+          "type": "p",
           "text": "4枝"
         },
         {
-          "type": "c",
+          "type": "a",
           "text": "1枝"
         }
       ]

@@ -4,11 +4,11 @@
 
     <!-- 設備 -->
     <div class="flex gap-4 w-full max-w-[650px]" :class="layout == 'v' ? 'justify-between' : 'flex-col'">
-      <div v-if="infoLeft.length > 0" class="flex flex-col gap-2" :class="layout == 'v' ? 'w-[300px]' : 'w-full'">
+      <div v-if="infoLeft.length > 0" class="flex flex-col gap-2" :class="layout == 'v' ? 'w-[370px]' : 'w-full'">
         <EquipmentComponent v-for="value in infoLeft" :key="value.id" :type="value.type" :text="value.text" />
       </div>
 
-      <div v-if="infoRight.length > 0" class="flex flex-col gap-2" :class="layout == 'v' ? 'w-[300px]' : 'w-full'">
+      <div v-if="infoRight.length > 0" class="flex flex-col gap-2" :class="layout == 'v' ? 'w-[370px]' : 'w-full'">
         <EquipmentComponent v-for="value in infoRight" :key="value.id" :type="value.type" :text="value.text" />
       </div>
     </div>

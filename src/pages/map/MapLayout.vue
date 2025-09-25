@@ -12,7 +12,8 @@
       <div class="flex relative"
         :class="currentMap?.layout == 'flex-col' ? 'flex-grow-[2] w-full h-0' : 'flex-grow w-0 h-full'">
         <MapComponent class="w-full h-full" :image-sources="currentContent.imageSources"
-          :data-points="currentContent.dataPoints" :active-points-index="activePointsIndex" :is-overall="routeId === 1" />
+          :data-points="currentContent.dataPoints" :active-points-index="activePointsIndex"
+          :is-overall="routeId === 1" />
 
         <div v-if="currentMap.contents.length > 1"
           class="absolute top-4 left-4 flex items-center justify-center gap-2 w-fit h-fit">
@@ -35,6 +36,8 @@
 
     </div>
 
+
+    <ToastContainer ref="toastRef" />
   </div>
 </template>
 
@@ -42,18 +45,26 @@
 import MapComponent from './components/Map.vue';
 import MapInfoComponent from './components/Info.vue';
 import MapDataService from '@/shared/services/MapDataService';
+import ToastContainer from './components/ToastContainer.vue';
 
 export default {
   name: 'MapPage',
   components: {
     MapComponent,
-    MapInfoComponent
+    MapInfoComponent,
+    ToastContainer
   },
   data() {
     return {
       mapDataList: [],
       activePointsIndex: [], // 呼叫API動態更新這個數值，標出地圖上發生警戒的位置
-      isOverall: false
+      isOverall: false,
+      toast: {
+        level: 1,
+        visible: false,
+        message: '',
+        duration: 3000000
+      }
     };
   },
   watch: {
@@ -87,6 +98,13 @@ export default {
     this.updateActivePointsIndex();
     // ============================================
   },
+  mounted() {
+    // 加入錯誤訊息測試
+    this.addToast(2, '二樓(南側)');
+    setTimeout(() => {
+      this.addToast(1, '一樓(南側)');
+    }, 1000);
+  },
   methods: {
     // 更新 activePointsIndex
     updateActivePointsIndex() {
@@ -99,6 +117,15 @@ export default {
     getNewSubIdRoute(newSubId) {
       const { id } = this.$route.params;
       return `/map/${id}/${newSubId}`;
+    },
+    // 加入錯誤訊息，message: 訊息內容, type: icon類型, level: 等級1~5, duration: 顯示時間(毫秒)
+    addToast(level, message) {
+      this.$refs.toastRef.show({
+        message: message,
+        type: '1',
+        level: level,
+        duration: 3000
+      });
     }
   }
 }

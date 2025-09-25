@@ -2,7 +2,11 @@
   <div class="flex items-center justify-between gap-2 w-full bg-[#c7c7c7] rounded-md px-2 py-1" v-if="typeInfo">
     <div class="flex items-center">
       <!-- icon -->
-      <img :src="typeInfo.iconImg" class="w-6 h-6 mr-2" />
+      <div class="flex items-center gap-1 mr-1">
+        <img :src="typeInfo.iconImg" class="w-6 h-6" />
+        <div v-if="typeInfo.type === 'g'" class="flex items-center justify-center w-6 h-6 rounded-full text-white bg-red-500">G</div>
+      </div>
+
 
       <!-- 內容 -->
       <span>{{ typeInfo.label }}</span>
@@ -33,11 +37,11 @@ export default {
         { type: '2', iconImg: '/assets/img/map/ui/icon-2.png', label: '快速球攝影機' },
         { type: '3', iconImg: '/assets/img/map/ui/icon-3.png', label: '半球型攝影機' },
         { type: '4', iconImg: '/assets/img/map/ui/icon-4.png', label: '魚眼式攝影機' },
-        { type: 'a', iconImg: '/assets/img/map/ui/icon-a.png', label: '門禁刷卡機' },
-        { type: 'b', iconImg: '/assets/img/map/ui/icon-b.png', label: '門禁及差勤監視攝影機' },
-        { type: 'c', iconImg: '/assets/img/map/ui/icon-c.png', label: '差勤刷卡機' },
-        { type: 'd', iconImg: '/assets/img/map/ui/icon-d.png', label: '顯示型刷卡機' },
-        { type: 'e', iconImg: '/assets/img/map/ui/icon-e.png', label: '門禁按鈕開關(含電磁鎖)' },
+        { type: 'r', iconImg: '/assets/img/map/ui/icon-r.png', label: '門禁刷卡機' },
+        { type: 'g', iconImg: '/assets/img/map/ui/icon-g.png', label: '門禁及差勤監視攝影機' },
+        { type: 'a', iconImg: '/assets/img/map/ui/icon-a.png', label: '差勤刷卡機' },
+        { type: 'vr', iconImg: '/assets/img/map/ui/icon-vr.png', label: '顯示型刷卡機' },
+        { type: 'p', iconImg: '/assets/img/map/ui/icon-p.png', label: '門禁按鈕開關(含電磁鎖)' },
       ],
     };
   },
