@@ -23,7 +23,7 @@
         <!-- 權限管理內容 -->
         <div class="flex items-center justify-between w-full h-full overflow-hidden">
           <!-- 子頁面按鈕：根據當前子導覽資料渲染 -->
-          <div class="flex h-full -ml-4">
+          <div class="flex flex-1 w-0 h-full -ml-4 overflow-auto">
             <div v-for="(child, index) in currentSubNavChildren" :key="index" :class="['tab-button',
               isActiveTab(child.path) ? 'active-tab' : '']" :style="{ transform: `translateX(-${index * 8}px)` }"
               @click="goToPage(child.path)">
@@ -33,7 +33,7 @@
 
 
           <!-- 右側導覽按鈕 -->
-          <div class="flex items-center gap-2">
+          <div class="flex flex-shrink-0 items-center gap-2 pl-5">
             <a @click="goDashboard" class="cursor-pointer">
               <img src="/assets/img/navbar/house.png" alt="house" class="h-10" />
             </a>
@@ -94,6 +94,14 @@ export default {
         },
         {
           path: '/map',
+        },
+        {
+          path: '/bi',
+          children: [
+            { label: 'AI當天各類事件數量', path: 'statistics' },
+            { label: '門禁事件', path: 'access' },
+            { label: '航班資訊', path: 'flight' },
+          ]
         }
       ]
     };

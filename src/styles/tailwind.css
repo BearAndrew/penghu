@@ -9,3 +9,14 @@
 img {
   @apply select-none;
 }
+
+/* 隱藏 scroll bar（但仍可滾動） */
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;    /* Firefox */
+}

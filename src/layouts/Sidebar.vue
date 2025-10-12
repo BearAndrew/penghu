@@ -47,7 +47,35 @@ export default {
         },
         {
           label: "地圖",
-          path: "/map/1/1",
+          children: [
+            { label: "全區", path: "/map/1/1" },
+            { label: "地下一樓", path: "/map/2/1" },
+            { label: "一樓(南側)", path: "/map/3/1" },
+            { label: "一樓(國際線北側)", path: "/map/3/2" },
+            { label: "二樓(南側)", path: "/map/4/1" },
+            { label: "二樓(國際線北側)", path: "/map/4/2" },
+            { label: "三樓", path: "/map/5/1" },
+            { label: "頂樓", path: "/map/6/1" },
+            { label: "站外停車場", path: "/map/7/1" },
+            { label: "塔台", path: "/map/8/1" },
+            { label: "宿舍一樓", path: "/map/9/1" },
+            { label: "宿舍二樓", path: "/map/9/2" },
+            { label: "貨運站一樓", path: "/map/10/1" },
+            { label: "貨運站頂樓", path: "/map/10/2" },
+            { label: "貨運站屋凸", path: "/map/10/3" },
+            { label: "貨運站外", path: "/map/10/4" },
+            { label: "污水處理廠", path: "/map/11/1" },
+            { label: "七美", path: "/map/12/1" },
+            { label: "望安", path: "/map/13/1" },
+          ]
+        },
+        {
+          label: "圖表",
+          children: [
+            { label: "AI當天各類事件數量", path: "/bi/statistics" },
+            { label: "門禁事件", path: "/bi/access" },
+            { label: "航班資訊", path: "/bi/flight" }
+          ]
         },
         {
           label: "第一層",

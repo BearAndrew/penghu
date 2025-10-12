@@ -54,6 +54,41 @@ const routes = [
         name: "Map",
         component: () => import("../pages/map/MapLayout.vue"),
       },
+      {
+        path: "/bi",
+        component: () => import("../pages/bi/BiLayout.vue"),
+        children: [
+          {
+            path: "statistics/:subId(\\d+)", // 例如 /bi/statistics/1
+            name: "BiStatistics",
+            component: () => import("../pages/bi/Statistics/Statistics.vue"),
+          },
+          {
+            path: "access/:subId(\\d+)",
+            name: "BiAccess",
+            component: () => import("../pages/bi/Access/Access.vue"),
+          },
+          {
+            path: "flight/:subId(\\d+)",
+            name: "BiFlight",
+            component: () => import("../pages/bi/Flight/Flight.vue"),
+          },
+
+          // ✅ Redirects: /bi/statistics → /bi/statistics/1
+          {
+            path: "statistics",
+            redirect: "/bi/statistics/1",
+          },
+          {
+            path: "access",
+            redirect: "/bi/access/1",
+          },
+          {
+            path: "flight",
+            redirect: "/bi/flight/1",
+          },
+        ],
+      },
     ],
   },
   {
