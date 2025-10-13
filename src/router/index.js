@@ -59,7 +59,7 @@ const routes = [
         component: () => import("../pages/bi/BiLayout.vue"),
         children: [
           {
-            path: "statistics/:subId(\\d+)", // 例如 /bi/statistics/1
+            path: "statistics/:subId(\\d+)",
             name: "BiStatistics",
             component: () => import("../pages/bi/Statistics/Statistics.vue"),
           },
@@ -73,8 +73,6 @@ const routes = [
             name: "BiFlight",
             component: () => import("../pages/bi/Flight/Flight.vue"),
           },
-
-          // ✅ Redirects: /bi/statistics → /bi/statistics/1
           {
             path: "statistics",
             redirect: "/bi/statistics/1",

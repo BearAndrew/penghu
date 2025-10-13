@@ -3,20 +3,44 @@
 
     <div class="flex flex-col flex-1 items-center justify-center gap-4 w-0 h-full">
 
-      <div class="flex-1 w-full h-0 px-4 py-3 rounded-xl bg-[#2d3a5a]">
+      <div class="flex flex-col flex-1 w-full h-0 px-4 py-3 rounded-xl bg-[#2d3a5a]">
         <div class="flex items-center gap-4 w-full relative">
           <div class="bg-[#63b85b] rounded-full w-6 h-6"></div>
-          <h3 class="text-xl text-white font-bold">人流</h3>
+          <h3 class="text-xl text-white font-bold">離站人次統計</h3>
           <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
+        </div>
+
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4 relative">
+          <div class="pl-4 pb-4 w-full h-full">
+            <LineChartComponent :dataSet="block1.dataSet"></LineChartComponent>
+          </div>
+
+          <div class="absolute top-1/2 -left-1 -translate-y-1/2 text-xs text-white vertical-text">
+            {{ block1.yLabel }}
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-white">
+            {{ block1.xLabel }}
+          </div>
         </div>
       </div>
 
-      <div class="flex flex-1 items-center justify-center gap-4 h-0 w-full">
-        <div class="flex-1 w-0 h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
-          <div class="flex items-center gap-4 w-full relative">
-            <div class="bg-[#63b85b] rounded-full w-6 h-6"></div>
-            <h3 class="text-xl text-white font-bold">人臉辨識</h3>
-            <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
+      <div class="flex flex-col flex-1 w-full h-0 px-4 py-3 rounded-xl bg-[#2d3a5a]">
+        <div class="flex items-center gap-4 w-full relative">
+          <div class="bg-[#63b85b] rounded-full w-6 h-6"></div>
+          <h3 class="text-xl text-white font-bold">到站人次統計</h3>
+          <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
+        </div>
+
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4 relative">
+          <div class="pl-4 pb-4 w-full h-full">
+            <LineChartComponent :dataSet="block2.dataSet"></LineChartComponent>
+          </div>
+
+          <div class="absolute top-1/2 -left-1 -translate-y-1/2 text-xs text-white vertical-text">
+            {{ block2.yLabel }}
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-white">
+            {{ block2.xLabel }}
           </div>
         </div>
       </div>
@@ -27,7 +51,7 @@
     <div class="flex flex-col flex-1 w-0 h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
       <div class="flex items-center gap-4 w-full relative">
         <div class="bg-[#63b85b] rounded-full w-6 h-6"></div>
-        <h3 class="text-xl text-white font-bold">歷史用電量</h3>
+        <h3 class="text-xl text-white font-bold">抵達航班資訊</h3>
         <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
       </div>
       <div class="flex flex-1 justify-between gap-4 h-0 mt-4">
@@ -84,11 +108,57 @@
 </template>
 
 <script>
+import LineChartComponent from '@/shared/components/LineChart.vue';
 
 export default {
   name: 'BiFlight3',
+  components: {
+    LineChartComponent,
+  },
   data() {
     return {
+      block1: {
+        xLabel: '時間',
+        yLabel: '人數',
+        dataSet: [
+          {
+            label: '',
+            colors: ['#ec89b5'],
+            data: [
+              { key: '0600', value: 290 },
+              { key: '0800', value: 68 },
+              { key: '1000', value: 320 },
+              { key: '1200', value: 44 },
+              { key: '1400', value: 400 },
+              { key: '1600', value: 312 },
+              { key: '1800', value: 14 },
+              { key: '2000', value: 101 },
+              { key: '2200', value: 92 },
+            ]
+          }
+        ]
+      },
+      block2: {
+        xLabel: '時間',
+        yLabel: '人數',
+        dataSet: [
+          {
+            label: '',
+            colors: ['#ec89b5'],
+            data: [
+              { key: '0600', value: 290 },
+              { key: '0800', value: 68 },
+              { key: '1000', value: 320 },
+              { key: '1200', value: 44 },
+              { key: '1400', value: 400 },
+              { key: '1600', value: 312 },
+              { key: '1800', value: 14 },
+              { key: '2000', value: 101 },
+              { key: '2200', value: 92 },
+            ]
+          }
+        ]
+      },
       block3: [
         {
           flightNo: 'KE-109',

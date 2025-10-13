@@ -36,7 +36,20 @@
           <h3 class="text-xl text-white font-bold">顯示當日各小時各異常狀況數量</h3>
           <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
         </div>
-        <div class="flex flex-1 items-center justify-between gap-4 h-0"></div>
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4 relative">
+          <div class="pl-4 pb-4 w-full h-full">
+            <BarChartComponent :dataSet="block2.dataSet">
+            </BarChartComponent>
+          </div>
+
+
+          <div class="absolute top-1/2 -left-1 -translate-y-1/2 text-xs text-white vertical-text">
+            {{ block2.yLabel }}
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-white">
+            {{ block2.xLabel }}
+          </div>
+        </div>
       </div>
       <div class="flex flex-col w-full h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
         <div class="flex items-center gap-4 w-full relative">
@@ -44,7 +57,20 @@
           <h3 class="text-xl text-white font-bold">顯示當日各區域異常狀況數量</h3>
           <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
         </div>
-        <div class="flex flex-1 items-center justify-between gap-4 h-0"></div>
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4 relative">
+          <div class="pl-4 pb-4 w-full h-full">
+            <BarChartComponent :dataSet="block3.dataSet" :direction="'horizontal'">
+            </BarChartComponent>
+          </div>
+
+
+          <div class="absolute top-1/2 -left-1 -translate-y-1/2 text-xs text-white vertical-text">
+            {{ block3.yLabel }}
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-white">
+            {{ block3.xLabel }}
+          </div>
+        </div>
       </div>
       <div class="flex flex-col w-full h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
         <div class="flex items-center gap-4 w-full relative">
@@ -52,7 +78,20 @@
           <h3 class="text-xl text-white font-bold">顯示異常狀況即時數量與當日累積</h3>
           <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
         </div>
-        <div class="flex flex-1 items-center justify-between gap-4 h-0"></div>
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4 relative">
+          <div class="pl-4 pb-4 w-full h-full">
+            <BarChartComponent :dataSet="block4.dataSet">
+            </BarChartComponent>
+          </div>
+
+
+          <div class="absolute top-1/2 -left-1 -translate-y-1/2 text-xs text-white vertical-text">
+            {{ block4.yLabel }}
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-white">
+            {{ block4.xLabel }}
+          </div>
+        </div>
       </div>
       <div class="flex flex-col w-full h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
         <div class="flex items-center gap-4 w-full relative">
@@ -60,7 +99,12 @@
           <h3 class="text-xl text-white font-bold">顯示當日異常狀況百分比</h3>
           <img src="/assets/img/common/icon-close.png" alt="close" class="absolute right-0 h-5" />
         </div>
-        <div class="flex flex-1 items-center justify-between gap-4 h-0"></div>
+        <div class="flex flex-1 items-center justify-between gap-4 h-0 mt-4">
+          <div class="w-full h-full">
+            <PieChartComponent :dataSet="block5.dataSet">
+            </PieChartComponent>
+          </div>
+        </div>
       </div>
       <div class="flex flex-col w-full h-full px-4 py-3 rounded-xl bg-[#2d3a5a]">
         <div class="flex items-center gap-4 w-full relative">
@@ -92,9 +136,15 @@
 </template>
 
 <script>
+import BarChartComponent from '@/shared/components/BarChart.vue';
+import PieChartComponent from '@/shared/components/PieChart.vue';
 
 export default {
   name: 'BiStatistics3',
+  components: {
+    BarChartComponent,
+    PieChartComponent
+  },
   data() {
     return {
       block1: [
@@ -144,6 +194,211 @@ export default {
           max: 248912,
         },
       ],
+      block2: {
+        xLabel: '地點',
+        yLabel: '每小時統計次數',
+        unit: 1,
+        dataSet: [
+          {
+            label: 'Bar 1',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 2 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 2',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 5 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 3',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 8 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 4',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 11 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 5',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 4 },
+            ]
+          },
+        ]
+      },
+      block3: {
+        xLabel: '次數',
+        yLabel: '地點',
+        unit: 1,
+        dataSet: [
+          {
+            label: 'Bar 1',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 2 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 2',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 5 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 3',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 8 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 4',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 11 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 5',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 4 },
+            ]
+          },
+        ]
+      },
+      block4: {
+        xLabel: '地點',
+        yLabel: '每日統計次數',
+        unit: 1,
+        dataSet: [
+          {
+            label: 'Bar 1',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 2 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 2',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 5 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 3',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 8 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 4',
+            colors: ['#c145ff'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 11 },
+              { key: '一樓停車場', value: 0 },
+            ]
+          },
+          {
+            label: 'Bar 5',
+            colors: ['#5bbeff', '#279cfb'],
+            data: [
+              { key: '一樓大廳', value: 0 },
+              { key: '一樓大門', value: 0 },
+              { key: '一樓入境', value: 0 },
+              { key: '二樓出境', value: 0 },
+              { key: '一樓停車場', value: 4 },
+            ]
+          },
+        ]
+      },
+      block5: {
+        dataSet: [
+          {
+            label: '徘徊',
+            colors: ['#97e1fe'],
+            data: { value: 9 },
+          },
+          {
+            label: '跌倒',
+            colors: ['#1856ff'],
+            data: { value: 12 },
+          },
+          {
+            label: '遺留/遺失物',
+            colors: ['#5cbeff'],
+            data: { value: 40 },
+          },
+        ]
+      },
       block6: {
         current: 161992,
         stats: [
