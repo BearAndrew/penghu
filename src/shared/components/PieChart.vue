@@ -19,6 +19,10 @@ export default {
       type: Object,
       default: () => ({ 'font-size': '12px', color: '#fff' })
     },
+    donutWidthRatio: {
+      type: Number,
+      default: 1
+    }
   },
   data() {
     return {
@@ -54,6 +58,7 @@ export default {
       },
       labelOffset: 8,
     });
+    this.pie.setConfig({ donutWidthRatio: this.donutWidthRatio });
 
     this.radial.setData(this.dataSet);
     this.pie.setData(this.dataSet);

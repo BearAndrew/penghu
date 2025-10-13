@@ -102,6 +102,13 @@ export default {
             { label: '門禁事件', path: 'access' },
             { label: '航班資訊', path: 'flight' },
           ]
+        },
+        {
+          path: '/chart',
+          children: [
+            { label: '部門進出比例圖', path: '部門進出比例圖' },
+            { label: '近一週各異常事件趨勢圖', path: '近一週各異常事件趨勢圖' },
+          ]
         }
       ]
     };
@@ -136,7 +143,7 @@ export default {
 
       const isMatch = targetSegments.every((seg, i) => seg === currentSegments[i]);
 
-      return isMatch; 
+      return isMatch;
     }
   },
   computed: {

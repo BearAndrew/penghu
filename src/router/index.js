@@ -87,6 +87,10 @@ const routes = [
           },
         ],
       },
+      {
+        path: "/chart/:chartName",
+        component: () => import("../pages/chart/ChartPage.vue"),
+      },
     ],
   },
   {

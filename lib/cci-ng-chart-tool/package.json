@@ -1,6 +1,6 @@
 {
   "name": "cci-ng-chart-tool",
-  "version": "0.0.0-watch+1760372750185",
+  "version": "0.0.0-watch+1760376489370",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0",

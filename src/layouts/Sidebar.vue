@@ -70,11 +70,35 @@ export default {
           ]
         },
         {
+          label: "BI",
+          children: [
+            {
+              label: "AI當天各類事件數量", children: [
+                { label: '人流偵測', path: "/bi/statistics/1" },
+                { label: '車流偵測', path: "/bi/statistics/2" },
+                { label: '其他偵測', path: "/bi/statistics/3" },
+              ]
+            },
+            {
+              label: "門禁事件", children: [
+                { label: "異常", path: "/bi/access/1" },
+                { label: "警報顯示", path: "/bi/access/2" },
+              ]
+            },
+            {
+              label: "航班資訊", children: [
+                { label: "航班統計A", path: "/bi/flight/1" },
+                { label: "航班統計B", path: "/bi/flight/2" },
+                { label: "其他統計", path: "/bi/flight/3" }
+              ]
+            }
+          ]
+        },
+        {
           label: "圖表",
           children: [
-            { label: "AI當天各類事件數量", path: "/bi/statistics" },
-            { label: "門禁事件", path: "/bi/access" },
-            { label: "航班資訊", path: "/bi/flight" }
+            { label: "部門進出比例圖", path: "/chart/部門進出比例圖" },
+            { label: "近一週各異常事件趨勢圖", path: "/chart/近一週各異常事件趨勢圖" },
           ]
         },
         {
